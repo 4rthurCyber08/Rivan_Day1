@@ -392,15 +392,50 @@ Task 1.
 - Allow all VLANs
 
 <br>
+
+~~~
+!@C1,C2
+conf t
+ int range __,__,__
+  switchport trunk encapsulation dot1q
+  switchport mode trunk
+  switchport trunk allowed vlan all
+  switchport trunk native vlan 1
+  no shut
+  end
+show int trunk
+~~~
+
 <br>
+
+~~~
+!@D1,D2
+conf t
+ int range __,__,__
+  switchport trunk encapsulation dot1q
+  switchport mode trunk
+  switchport trunk allowed vlan all
+  switchport trunk native vlan 1
+  no shut
+  end
+show int trunk
+~~~
+
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
+~~~
+!@A1,A2,A3
+conf t
+ int range __,__
+  switchport trunk encapsulation dot1q
+  switchport mode trunk
+  switchport trunk allowed vlan all
+  switchport trunk native vlan 1
+  no shut
+  end 
+show int trunk
+~~~
+
 <br>
 <br>
 <br>
@@ -706,37 +741,7 @@ What STP features should be applied on the network to optimize STP traffic and n
 
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-&nbsp;
----
-&nbsp;
-
-### ANSWER
-<details>
-<summary>Show Answer</summary>
-	
 ~~~
 !@A1,A2,A3
 conf t
@@ -797,8 +802,6 @@ conf t
   end
 ~~~
 
-</details>
-
 &nbsp;
 ---
 &nbsp;
@@ -806,9 +809,9 @@ conf t
 ### [3-Tier] NIST SP 800-41r1 network security guidance recommends to enable PortFast & BPDU Guard Globally.
 ~~~
 !@Switches
-spanning-tree portfast default
-spanning-tree portfast bpduguard default
-spanning-tree portfast bpdufilter default
+! spanning-tree portfast default
+! spanning-tree portfast bpduguard default
+! spanning-tree portfast bpdufilter default
 ~~~
 
 <br>
@@ -1038,38 +1041,117 @@ Task1:
 - C1 & C2 must both participate in forming link aggregation on all linked ports.
 - If the number of bundled ports goes down to 2 or less, the port-channel must go down.
 
+~~~
+!@C1
+conf t
+ int range e0/1-3
+  channel-group 40 mode active
+ int range e1/1-2
+  channel-group 11 mode active
+ int range e2/1-2
+  channel-group 12 mode active
+ int po40
+  port-channel min-links 3
+  end
+~~~
+
+<br>
+
+~~~
+!@C2
+conf t
+ int range e0/1-3
+  channel-group 40 mode active
+ int range e1/1-2
+  channel-group 21 mode active
+ int range e2/1-2
+  channel-group 22 mode active
+ int po40
+  port-channel min-links 3
+  end
+~~~
+
+
+<br>
+<br>
+
+
 Task2:
 - D1 & D2 must use the open standard protocol for link aggregation. 
 - D1 & D2 must not participate but will form link aggregation on all linked ports.
+
+~~~
+!@D1
+conf t
+ int range e1/0,e1/3
+  channel-group 11 mode passive
+ int range e2/0,e2/3
+  channel-group 21 mode passive
+ int range e1/1-2
+  channel-group 41 mode passive
+ int range e2/1-2
+  channel-group 42 mode passive
+ int range e3/1-2
+  channel-group 43 mode passive
+  end
+~~~
+
+<br>
+
+~~~
+!@D2
+conf t
+ int range e1/0,e1/3
+  channel-group 12 mode passive
+ int range e2/0,e2/3
+  channel-group 22 mode passive
+ int range e1/1-2
+  channel-group 44 mode passive
+ int range e2/1-2
+  channel-group 45 mode passive
+ int range e3/1-2
+  channel-group 46 mode passive
+  end
+~~~
+
 
 Task3:
 - A1, A2, and A3 must use the open standard protocol for link aggregation. 
 - A1, A2, and A3 must participate in forming link aggregation on all linked ports.
 
+~~~
+!@A1
+conf t
+ int range ___
+  channel-group 41 mode active
+ int range ___
+  channel-group 44 mode active
+  end
+~~~
+
 <br>
+
+~~~
+!@A2
+conf t
+ int range ___
+  channel-group 42 mode active
+ int range ___
+  channel-group 45 mode active
+  end
+~~~
+
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
+~~~
+!@A3
+conf t
+ int range ___
+  channel-group 43 mode active
+ int range ___
+  channel-group 46 mode active
+  end
+~~~
 
 
 <br>
@@ -1077,6 +1159,7 @@ Task3:
 
 ---
 &nbsp;
+
 
 ## IP ADDRESSING
 ### Switch Virtual Interface (SVI)
