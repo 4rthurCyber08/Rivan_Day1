@@ -851,8 +851,8 @@ conf t
 conf t
  vtp domain ccnp
  vtp password pass
- vtp mode server
  vtp version 2
+ vtp mode client
  end
 ~~~
 
