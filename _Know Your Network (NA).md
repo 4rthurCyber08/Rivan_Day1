@@ -5,8 +5,10 @@
 # 👋 Welcome to Rivan
 *"There's no better teacher than experience"*
 
+
 <br>
 <br>
+
 
 ## 📂 Create your own folder in the desktop
 ~~~
@@ -17,14 +19,17 @@ cd _name-#$34T#
 dir
 ~~~
 
+
 <br>
 <br>
 
 
 # 💻 Build your network. 
 
+
 <br>
 <br>
+
 
 ## 🔧 Configure CoreTAAS
 ### ⚙️ 1. Initial configurations
@@ -42,9 +47,11 @@ conf t
  end
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 ### ⚙️ 2. Protect Console & Remote Access
 ~~~
@@ -61,9 +68,11 @@ conf t
   end
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 ### ⚙️ 3. Create SVI (Switch Virtual Interface)
 ~~~
@@ -88,12 +97,14 @@ show ip int brief
 By default, 
   Switchports = On 
   SVIs = off
+
   
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### 🎯 Exercise 02: Turn on VLAN 1
 
@@ -106,11 +117,13 @@ conf t
 show ip int br
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### 🎯 Exercise 03: Add the other SVIs
 
@@ -201,43 +214,13 @@ conf t
 <br>
 <br>
 
-&nbsp;
+
+<br>
+<br>
+
 ---
 &nbsp;
 
-### ANSWER
-<details>
-<summary>Show Answer</summary>
-	
-~~~
-!@CoreTaas
-conf t
- int vlan 1
-  ip add 10.#$34T#.1.2 255.255.255.0
-  description DEFAULT-VLAN
-  no shut
-  exit
- int vlan 10
-  ip add 10.#$34T#.10.2 255.255.255.0
-  description WIFI-VLAN
-  no shut
-  exit
- int vlan 50
-  ip add 10.#$34T#.50.2 255.255.255.0
-  description CCTV-VLAN
-  no shut
-  exit
- int vlan 100
-  ip add 10.#$34T#.100.2 255.255.255.0
-  description VOICE-VLAN
-  no shut
- end
-~~~
-</details>
-
-&nbsp;
----
-&nbsp;
 
 ### 📃 Full Script
 <details>
@@ -279,11 +262,13 @@ conf t
 ~~~
 </details>
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## 🔧 Configure CoreBABA
 Know the jobs of a Layer 3 Switch
@@ -300,9 +285,11 @@ Know the jobs of a Layer 3 Switch
 | 802.3at (PoE+)  |              |
 | 802.3bt (PoE++) |              |
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 Which device consumes the most power? __SPI - `show power inline`__
 
@@ -311,11 +298,13 @@ Which device consumes the most power? __SPI - `show power inline`__
 show power inline
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### ⚙️ 2. SVI (Switch Virtual Interface)
 
@@ -465,68 +454,13 @@ conf t
   end
 ~~~
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-&nbsp;
----
-&nbsp;
-
-### ANSWER
-<details>
-<summary>Show Answer</summary>
-	
-~~~
-!@CoreBABA
-conf t
- ip dhcp excluded-address 10.#$34T#.100.1 10.#$34T#.100.100
- ip dhcp pool POOLVOICE
-  network 10.#$34T#.100.0 255.255.255.0
-  default-router 10.#$34T#.100.4
-  domain-name VOICEDATA.COM
-  dns-server 10.#$34T#.1.10
-  option 150 ip 10.#$34T#.100.8
-  lease 5 0 0
-  end
-~~~
-
-</details>
 
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### ⚙️ 4. VLAN Creation & VLAN Management
 *Ports must be placed in the correct VLANs.*
@@ -540,9 +474,11 @@ conf t
 show vlan brief
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 Just because there's an SVI doesn't mean there's a VLAN.
 
@@ -562,6 +498,7 @@ conf t
 &nbsp;
 ---
 &nbsp;
+
 
 Place Switchports in their correct VLAN.
 
@@ -590,11 +527,13 @@ conf t
  end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### 🎯 Exercise 05: Place Cameras to their correct VLANs based on the topology.
 
@@ -618,70 +557,13 @@ conf t
   end
 ~~~
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-&nbsp;
----
-&nbsp;
- 
-### ANSWERS
-<details>
-<summary>Show Answer</summary>
-
-~~~
-!@CoreBABA
-conf t
- vlan 50
-  name CCTVVLAN
-  exit
- int fa0/6
-  switchport mode access
-  switchport access vlan 50
-  exit
- int fa0/8
-  switchport mode access
-  switchport access vlan 50
-  end
-~~~
-
-</details>
 
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## ⚙️ 5. MAC Learning & MAC Reservation
 *What does it mean to say Layer 2 in networking?*
@@ -695,18 +577,22 @@ How to view the MAC addresses learned by the Switch? __SMAC - `show mac address-
 show mac address-table
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 | Camera         | MAC Address      |
 | ---            | ---              |
 | Camera fa0/6   | #camera6macadd#  |
 | Camera fa0/8   | #camera8macadd#  |
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 Assign a specific IP address to a device.
 
@@ -723,9 +609,11 @@ conf t
  end
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 Verify DHCP: __SIDB - `show ip dhcp bindings`__
 
@@ -734,11 +622,13 @@ Verify DHCP: __SIDB - `show ip dhcp bindings`__
 show ip dhcp bindings
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### ⚖️ Ensure Availability through redundancy and loadbalance
 
@@ -753,9 +643,11 @@ conf t
   end
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 Review the jobs of a switch:
  1. &nbsp;
@@ -763,12 +655,14 @@ Review the jobs of a switch:
  3. &nbsp;
  4. &nbsp;
  5. &nbsp;
+
  
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### 📃 Full Script
 <details>
@@ -896,11 +790,13 @@ conf t
 
 </details>
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### ☁️ Remote Access
 Access the CoreSwitches without the console cable.
@@ -910,9 +806,11 @@ ping 10.#$34T#.1.2
 ping 10.#$34T#.1.4
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 When a device is pingable you can scan it.
 ~~~
@@ -924,6 +822,7 @@ nmap -v 10.#$34T#.1.4
 Is port 23 open?
 
 Enter port 23 via __SecureCRT__
+
 
 <br>
 <br>
@@ -964,6 +863,7 @@ conf t
 ---
 &nbsp;
 
+
 ### Know the jobs of a Call Manager
 
 ## ⚙️ 1. Analog Phones
@@ -999,9 +899,11 @@ show dial-peer voice summary     !SDVS
 csim start #$34T#00
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 Modify the tone of the phone.
 
@@ -1013,11 +915,13 @@ conf t
   end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## ⚙️ 2. IP Phones - Cisco Skinny Client Control Protocol (SCCP)
 *What kind of phones do enterprise use?*
@@ -1041,16 +945,20 @@ conf t
 
 *Why 10.#$34T#.100.8? __TFTP__*
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 Ephone 1 MAC: #ephone1macadd#
 Ephone 2 MAC: #ephone1macadd#
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 ~~~
 !@CUCM
@@ -1107,11 +1015,13 @@ conf t
 > [!NOTE]
 > Depending on the ephone, __`create cnf-files`__ will need to be pasted twice.
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## ⚙️ 3. Video Calls
 
@@ -1131,11 +1041,13 @@ conf t
 end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## ⚙️ 4. Allow Incoming & Outgoing Calls
 
@@ -1225,14 +1137,17 @@ conf t
   destination-pattern 92..
   session target ipv4:10.92.100.8
   codec g711ULAW
+ no dial-peer voice #$34T# Voip
  end
 ~~~
+
 
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## ⚙️ 5. Interactive Voice Response System (IVRS)
 *How do large call centers handle numerous calls?*
@@ -1295,11 +1210,13 @@ config t
   end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 Review the jobs of a call manager:
  1. &nbsp;
@@ -1307,12 +1224,14 @@ Review the jobs of a call manager:
  3. &nbsp;
  4. &nbsp;
  5. &nbsp;
+
   
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### 📃 Full Script
 
@@ -1552,52 +1471,20 @@ Is the device pingable?
 10.#$34T#.100.8
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## 🔧 Configure EDGE
 ### 🏨 Establish connectivity to your enterprise.
 *How do you gain access to the internet?*
 
-&nbsp;
----
-&nbsp;
-
-*What is the maximum distance of a UTP cable? 100m?*
-
-Network Scopes
-  - 🏠 LAN                  Local Area Network
-  - 🌎 WAN                  Wide Area Network
-
 <br>
 
-PLDT Home vs PLDT Enterprise
-  - 🌃 MAN                  Metropolitan Area Network
-                         PLDT Enterprise Metro Ethernet
-
-<br>
-
-Transport technologies
-  - Leased Line
-  - SDWAN
-  - MPLS VPLS            (Pseudowire, L3 & L2)
-  - VPN                  (EVPN)
-
-<br>
-
-*Why PLDT?*
-  __Submarine Cable Map__
-
-*Why NOT PLDT?*
-  - Cabling
-  - [Service Reliability](https://www.pldthome.com/termsandconditions)
-
-&nbsp;
----
-&nbsp;
 
 *How to know if you are connected to PLDT? __SCN - `show cdp neighbor`__*
 
@@ -1606,11 +1493,13 @@ Transport technologies
 show cdp neighbor
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### 🎯 Exercise 07: Review of First 5 (HESNo)
 Task:
@@ -1633,37 +1522,14 @@ conf t
  no ip ____  ____
  end
 ~~~
- 
+
+
 <br>
 <br>
 
 ---
 &nbsp;
 
-### ANSWERS
-
-<details>
-<summary>Show Answer</summary>
-	
-~~~
-!@EDGE
-conf t
- hostname EDGE-#$34T#
- enable secret pass
- service password-encryption
- no logging cons
- no ip domain lookup
- end
-~~~
-
-</details>
-
-<br>
-<br>
-
-&nbsp;
----
-&nbsp;
 
 ### 🎯 Exercise 08: Review of Protecting the console and terminal.
 
@@ -1699,70 +1565,13 @@ conf t
   end
 ~~~
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-&nbsp;
----
-&nbsp;
-
-## ANSWERS
-
-<details>
-<summary>Show Answer</summary>
-	
-~~~
-!@EDGE
-conf t
- line cons 0
-  password pass
-  login
-  exec-timeout 30 30
-  exit
- line vty 0 14
-  password pass
-  login
-  exec-timeout 720 0
-  end
-~~~
-
-</details>
 
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### ⚙️ IP addressing
 ~~~
@@ -1782,11 +1591,13 @@ conf t
   end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### ⚙️ Configure routing protocols
 What are the jobs of a router?
@@ -1797,11 +1608,13 @@ What are the jobs of a router?
  5. &nbsp;
  6. &nbsp;
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### ⚙️ 1. Static Routing
 ~~~
@@ -1851,9 +1664,11 @@ conf t
  end
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 Verify: *How can you check the list of routes?  __SIR - `show ip route`__*
 
@@ -1862,9 +1677,11 @@ Verify: *How can you check the list of routes?  __SIR - `show ip route`__*
 show ip route
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 *How do you configure routes on windows?*
 
@@ -1874,11 +1691,13 @@ route add 10.0.0.0 mask 255.0.0.0 10.#$34T#.1.4
 route add 200.0.0.0 mask 255.255.255.0 10.#$34T#.1.4
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### ⚙️ 2. OSPF ROUTING
 *At what capacity do you want your devices to run?*
@@ -1919,9 +1738,11 @@ network 10.#$34T#.100.0 0.0.0.255 area 0
 end
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 *Verify: How to check if OSPF is working? <br>
   __SIP - `show ip protocols`__ <br>
@@ -1996,9 +1817,11 @@ First 5 commands:
 | No            |              |
 | No            |              |
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 Commands to protect console, in order:
 
@@ -2007,9 +1830,11 @@ Commands to protect console, in order:
 config t
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 Commands to protect remote access, in order:
 
@@ -2018,9 +1843,11 @@ Commands to protect remote access, in order:
 config t
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 Commands to configure DHCP, in order:
 
@@ -2035,9 +1862,11 @@ config t
   ____ 10.0.1.10
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 What are the jobs of a switch?
  1. &nbsp;
@@ -2046,9 +1875,11 @@ What are the jobs of a switch?
  4. &nbsp;
  5. &nbsp;
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 What are the jobs of a call manager/voice gateway?
  1. &nbsp;
@@ -2057,10 +1888,12 @@ What are the jobs of a call manager/voice gateway?
  4. &nbsp;
  5. &nbsp;
 
+
 &nbsp;
 ---
 &nbsp;
- 
+
+
 What are the jobs of a router?
  1. &nbsp;
  2. &nbsp;
