@@ -347,9 +347,11 @@ conf t
  end
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 Verify Connectivity: 
 
@@ -358,22 +360,24 @@ Verify Connectivity:
 ping 10.#$34T#.1.4
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
 
+
 ### ⚙️ 3. DHCP / BOOTPS & BOOTPC
 *In a network, which device should be a DHCP Server? __It depends.__*
 
 | Network     | DHCP Device |
 | :---:       |     ---     |
-| SOHO        | Router      |
+| SOHO        |             |
 |             |             |
 | Enterprise                |
-| Medium Biz  | Firewall    |
-| Large Biz   | Core Switch |
+| Medium Biz  |             |
+| Large Biz   |             |
 
 <br>
 
@@ -404,23 +408,6 @@ conf t
   exit
 ~~~
 
-&nbsp;
----
-&nbsp;
-
-DHCP (Dynamic Host Configuration Protocol)
-[DHCP Options](https://www.iana.org/assignments/bootp-dhcp-parameters/bootp-dhcp-parameters.xhtml)
-                            
-| Option              |    Value    |
-| ---                 |    :---:    |
-| Address Subnet Mask |      1      |
-| Default Gateway     |      3      |
-| DNS Server          |      6      |
-| Domain Name         |     15      |
-| Domain Controller   |     43      |
-| Lease Time          |     51      |
-| Client Identifier   |     61      |
-| TFTP Server         |    150      |
 
 <br>
 <br>
@@ -897,22 +884,6 @@ Verify Functionality:
 !@CUCM
 show dial-peer voice summary     !SDVS
 csim start #$34T#00
-~~~
-
-
-&nbsp;
----
-&nbsp;
-
-
-Modify the tone of the phone.
-
-~~~
-!@CUCM
-conf t
- voice-port 0/0/0
-  cptone dutch
-  end
 ~~~
 
 
@@ -1408,6 +1379,7 @@ conf t
   destination-pattern 92..
   session target ipv4:10.92.100.8
   codec g711ULAW
+ no dial-peer voice #$34T# Voip
  end
  
 !@IVRS
@@ -1453,11 +1425,13 @@ config t
 
 </details>
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## ☁️ Remote Access | [JUMPSERVER](https://www.jumpserver.com/)
 ### 🎯 Exercies 06: Attempt to establish a telnet session with the call manager
@@ -1749,9 +1723,11 @@ end
   __SION - `show ip ospf neighbor`__ <br>
   __SIRO - `show ip route ospf`__* <br>
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 ### Now that routing is in place, there's no need to jump to access CUCM.
 Ping
@@ -1902,4 +1878,709 @@ What are the jobs of a router?
  5. &nbsp;
 
 
+<br>
+<br>
 
+---
+&nbsp;
+
+
+## Python & JSON CrashCourse
+
+### Lab Setup
+
+CSR1000v:
+  Name: UTM-PH
+  
+  | NetAdapter   |        |
+  | ---          | ---    |
+  | NetAdapter   | NAT    |
+  | NetAdapter 2 | VMNet2 |
+  | NetAdapter 3 | VMNet3 |
+
+
+TinyCore (yvm.ova):
+  Name: BLDG-PH
+  
+  | NetAdapter   |                    |
+  | ---          | ---                |
+  | NetAdapter   | VMNet3             |
+
+
+&nbsp;
+---
+&nbsp;
+
+
+### Set IP address and Routing
+~~~
+!@UTM-PH
+conf t
+ hostname UTM-PH
+ enable secret pass
+ service password-encryption
+ no logging cons
+ no ip domain lookup
+ line vty 0 14
+  transport input all
+  password pass
+  login local
+  exec-timeout 0 0
+ int g1
+  ip add 208.8.8.11 255.255.255.0
+  no shut
+ int g2
+  ip add 192.168.102.11 255.255.255.0
+  no shut
+ int g3
+  ip add 11.11.11.113 255.255.255.224
+  no shut
+ !
+ username admin privilege 15 secret pass
+ ip http server
+ ip http secure-server
+ ip http authentication local
+ ip route 0.0.0.0 0.0.0.0 208.8.8.2
+ end
+wr
+!
+~~~
+
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+## JSON (JavaScript Object Notation)
+- Data Representation Format
+- Lightweight and Easy to Read/Write
+- Easily Integrate with most languages
+
+### Data Types
+
+| Type                | JSON          |
+| ---                 | ---           |
+| "Cisco"             | Strings       |
+| 10                  | Integer       |
+| 10.0                | Float         |
+| True                | Boolean (t/f) |
+| [1,"Router"]        | Array         |
+| {"vendor": "cisco"} | Object        |
+
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+### 🎯 Exercise 09: Describe a product
+
+Product: Marker
+*What questions will you ask to help you in describing the product?*
+
+
+__4F.json__
+~~~json
+{
+    "4F-Devices": {
+        "Router": {
+            "Vendor": ["Cisco", "Juniper", "Aruba", "Arista"],
+            "Deployment": ["Operational", "Testing", "Retired"],
+            "Stock": 20,
+            "Maintenance": false
+        },
+        
+        "Firewall": {
+            "Vendor": ["Cisco", "Fortinet", "Palo Alto", "Sophos"],
+            "Deployment": ["Operational", "Testing", "Retired"],
+            "Stock": 12,
+            "Maintenance": false
+        }
+    }
+}
+~~~
+
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+### 🎯 Exercise 10: Create a sample valid JSON Data describing the EDGE-Router
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+## RESTCONF
+*What information do you need to configure a router interface?*
+
+> Interface:
+  > If-Name
+  > IP address
+  > Subnet Mask
+  > Shutdown: Enabled/Disable
+
+
+~~~
+!@UTM-PH
+conf t
+ username admin priv 15 secret pass
+ ip http server
+ ip http secure-server
+ restconf
+ end
+~~~
+
+
+On a Folder:  
+~~~
+!@cmd
+curl.exe -k `
+  -u admin:pass `
+  -H "Accept: application/yang-data+json" `
+  https://192.168.102.11/restconf/data/ietf-interfaces:interfaces `
+  -o interface.json
+~~~
+
+~~~
+!@cmd
+curl.exe -k `
+  -u admin:pass `
+  -H "Accept: application/yang-data+xml" `
+  https://192.168.102.11/restconf/data/ietf-interfaces:interfaces `
+  -o interface.xml
+~~~
+
+~~~
+!@cmd
+curl.exe -k `
+  -u admin:pass `
+  -H "Accept: application/yang-data+json" `
+  https://192.168.102.11/restconf/data/ietf-yang-library:modules-state `
+  -o modules.json
+~~~
+
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+## Python
+
+__Install Necessary Libraries__
+~~~
+!@cmd
+py -m pip install --upgrade pip
+py -m pip install netmiko
+py -m pip install paramiko
+~~~
+
+<br>
+
+| Type                | JSON          | Python        |
+| ---                 | ---           | ---           |
+| "Cisco"             | Strings       | Strings       |
+| 10                  | Integer       | Integer       |
+| 10.0                | Float         | Float         |
+| True                | Boolean (t/f) | Boolean (T/F) |
+| [1,"Router"]        | Array         | List          |
+| {"vendor": "cisco"} | Object        | Dictionary    |
+| Null                | null          | None          |
+
+<br>
+
+~~~python
+py_dictionary = {
+    'key_string': 'value_string',
+    'key_int': 1,
+    'key_float': 1.0,
+    'key_boolean': True,
+    'key_list': [True, 2, 3.0, '5'],
+    'key_dictionary': {
+        'nested' : [
+            'I\'m',
+            'nested',
+            'data'
+        ]
+    }
+}
+
+# String
+# py_dictionary['key_string']
+
+# Integer
+# py_dictionary['key_int']
+
+# Float
+# py_dictionary['key_float']
+
+# Boolean
+# py_dictionary['key_boolean']
+
+# List
+# py_dictionary['key_list']
+
+# Nested Data
+# py_dictionary['key_dictionary']['nested'][1]
+~~~
+
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+### 🎯 Exercise 11: From py_dictionary, print the float value 1.0 from key_float.
+
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+### 🎯 Exercise 12: From py_dictionary, store the string value '5', from key_list, in a variable called, sample. Then, print the value of sample.
+
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+### 🎯 Exercise 13: From py_dictionary, print the string 'data' from key_dictionary.
+
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+__rivanlib.py__
+~~~python
+
+# Configurations for Cisco Commands
+class Cisco:
+	def __init__(self, data):
+		self.data = data
+
+
+	def gen_config(self):
+		full_command = []
+
+		if 'vlan' in self.data:
+			command = self.vlan()
+			full_command = [*full_command, *command]
+			
+		if 'interface' in self.data:
+			command = self.ipv4_int()
+			full_command = [*full_command, *command]
+
+		if 'dhcpv4' in self.data:
+			command = self.ipv4_dhcp()
+			full_command = [*full_command, *command]
+		
+		return full_command
+
+
+	def vlan(self):
+		'''
+		This method is used to configure VLANs NOT SVIs
+
+		Scheme (JSON):
+		{
+			"vlan":
+			[
+				{
+					"id": "20",
+					"name": "MANAGEMENT VLAN"
+				}
+			]
+		}
+		'''
+		
+		full_command = []
+
+		# Iterate through all given vlan values
+		for vlan in self.data['vlan']:
+
+			# Configure VLAN with Name assignment
+			command = [
+				f'vlan {vlan["id"]}',
+				f'name {vlan["name"]}'
+			]
+
+			full_command = [*full_command, *command]
+		
+		return full_command
+
+
+	def ipv4_int(self):
+		'''
+        This method is used to configure IPv4 addresses on L3 interfaces 
+        such as Routing Ports, SVIs, and Loopback Interfaces.
+        
+        Scheme (JSON):
+        
+		{
+			"interface": 
+			[
+				{
+					"name": "GigabitEthernet1",
+					"enabled": true,
+					"description": "Configured via Python",
+					"type": {
+						"swport": {
+							"data-vlan": "20",
+							"voice-vlan": "100"
+						},
+
+						"rtport": {
+							"ietf-ip:ipv4": {
+								"address": 
+								[
+									{
+										"ip": "208.8.8.11",
+										"netmask": "255.255.255.0"
+									},
+
+									{
+										"ip": "208.8.8.12",
+										"netmask": "255.255.255.0"
+									}
+								]
+							}
+						}
+					}
+				}
+			]
+		}
+		'''
+        
+		full_command = []
+
+		# Iterate through all given interface values
+		for interface in self.data['interface']:
+            
+			try:
+				# Configure Interface Name & Description
+				command = [
+					f'interface {interface["name"]}',
+					f'description {interface["description"]}'
+				]
+
+				# Determine if interface is shutdown
+				if interface['enabled'] == True:
+					command = [*command, 'no shut']
+				else:
+					command = [*command, 'shut']
+
+				# Determine if the interface is a switchport or routingport
+				if 'swport' in interface['type'] and 'rtport' in interface['type']:
+					print('[!] Error: An interface cannot both be a switchport and routing port. Specify only a single Type: \'swport\' or \'rtport\' ')
+				
+
+				elif 'swport' in interface['type']:
+					swport = interface['type']['swport']
+					command = [
+						*command,
+						f'switchport mode access',
+						f'switchport access vlan {swport["data-vlan"]}'
+					]
+
+					if 'voice-vlan' in swport:
+						command = [
+							*command,
+							f'switchport voice vlan {swport["voice-vlan"]}'
+						]
+				
+
+				elif 'rtport' in interface['type']:
+					rtport = interface['type']['rtport']
+
+					# Turn a switchport to a routing port
+					command = [
+						*command,
+						'no switchport' 
+					]
+
+					# Evaluate if there are more than one IP address specified
+					ipv4_address = rtport['ietf-ip:ipv4']['address']
+					for ipadd in ipv4_address:
+						index = ipv4_address.index(ipadd)
+						if index > 0:
+							line = [
+								f'ip address {ipadd["ip"]} {ipadd["netmask"]} secondary'
+							]
+						else:
+							line = [
+								f'ip address {ipadd["ip"]} {ipadd["netmask"]}'
+							]
+
+						command = [*command, *line]
+
+				full_command = [*full_command, *command]
+			
+			except Exception as err:
+				print(err)
+				continue
+		
+		return full_command
+
+
+	def ipv4_dhcp(self):
+		'''
+		This method is used to configure a DHCPv4 Pool.
+        
+        Scheme (JSON):
+
+		{
+			"dhcpv4": [
+				{
+					"name": "MGMTPOOL",
+					"network": {
+						"ip": "192.168.103.0",
+						"netmask": "255.255.255.0"
+					},
+					"gateway": "192.168.103.11",
+					"dns": "192.168.103.11",
+					"domain": "MGMT.COM"
+				}
+			]
+		}
+		'''
+
+		full_command = []
+
+		# Iterate through all given dhcp values
+		for dhcp in self.data['dhcpv4']:
+			command = [
+				f'ip dhcp pool {dhcp["name"]}',
+				f'network {dhcp["network"]["ip"]} {dhcp["network"]["netmask"]}',
+				f'default-router {dhcp["gateway"]}',
+				f'dns-server {dhcp["dns"]}',
+				f'domain-name {dhcp["domain"]}'
+			]
+
+			full_command = [*full_command, *command]
+		
+		return full_command
+
+
+	def ap_wifi(self):
+		'''
+		This method is used to configure cisco access point.
+
+		Scheme (JSON):
+
+		{
+			"aironet": {
+				"hostname": "aironet-m",
+				"ssid": "m-welcomeToRivan",
+				"auth-type": "open",
+				"key-man": "wpa",
+				"wifi-pass": "C1sc0123",
+				"channel": "9",
+				"encr-mod": "tkip",
+				"vlan": "m"
+			}
+		} 
+		'''
+
+		aironet = self.data['aironet']
+
+		full_command = [
+			f'hostname {aironet["hostname"]}',
+			f'dot11 ssid {aironet["ssid"]}',
+			f'vlan {aironet["vlan"]}',
+			f'authentication {aironet["auth-type"]}',
+			f'authentication key-management {aironet["key-man"]}',
+			f'wpa-psk ascii {aironet["wifi-pass"]}',
+			'guest-mode',
+			'default Int Dot11Radio 0',
+			'default interface gigabitEthernet 0',
+			'int dot11radio 0',
+			'no shut',
+			f'channel {aironet["channel"]}',
+			f'encryption mode ciphers {aironet["encr-mod"]}',
+			f'encryption vlan {aironet["vlan"]} mode ciphers {aironet["encr-mod"]}',
+			f'ssid {aironet["ssid"]}',
+			'exit',
+			f'interface dot11radio 0.{aironet["vlan"]}',
+			f'encapsulation dot1q {aironet["vlan"]} native',
+			'bridge-group 1',
+			'exit'
+		]
+
+		return full_command
+~~~
+
+
+__csr.py (PLAIN)__
+~~~python
+from netmiko import ConnectHandler
+
+# Device Info
+device = {
+    'device_type': 'cisco_ios_telnet',
+    'host': '192.168.102.11',
+    'username': 'admin',
+    'password': 'pass',
+    'secret': 'pass',
+    'port': 23
+}
+
+# Device Configurations
+command = [
+    'int loopback 1',
+    'ip add 1.1.1.1 255.255.255.255'
+]
+
+
+if __name__ == "__main__":
+
+    # Access Device
+    access_cli = ConnectHandler(**device)
+    access_cli.enable()
+
+    # Push Configs
+    access_cli.send_config_set(command)
+    siib = access_cli.send_command('show ip int brief')
+    access_cli.disconnect()
+
+    print(siib)
+~~~
+
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+## AironetPy
+
+__aironet.py__
+~~~python
+from netmiko import ConnectHandler
+import rivanlib
+import json
+
+device_info = {
+    'device_type': 'cisco_ios_telnet',
+    'host': '10.69.10.3',
+    'username': 'admin',
+    'password': 'pass',
+    'secret': 'pass'
+}
+
+with open('ap.json', 'r') as file:
+    command = json.load(file)
+
+
+if __name__ == '__main__':
+    command = rivanlib.Cisco(command).ap_wifi()
+
+    access_cli = ConnectHandler(**device_info)
+    access_cli.enable()
+    output = access_cli.send_config_set(command)
+
+    access_cli.disconnect()
+    print(output)
+~~~
+
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+## Session Initiation Protocol
+
+~~~
+!@CUCM - Session Initiation Protocol
+conf t
+ voice service voip
+  allow-connections h323 to sip
+          
+  allow-connections sip to h323
+  allow-connections sip to sip
+  supplementary-service h450.12
+ sip
+   bind control source-interface fa0/0
+   bind media source-interface fa0/0
+   registrar server expires max 600 min 60
+ voice register global
+  mode cme
+  source-address 10.#$34T#.100.1 port 5060
+  max-dn 12
+  max-pool 12
+  authenticate register
+  create profile sync syncinfo.xml
+ voice register dn 1
+   number #$34T#23
+   allow watch
+   name #$34T#23
+ voice register dn 2
+   number #$34T#24
+   allow watch
+   name #$34T#24
+  voice register pool 1
+    id mac #mym0bilemac#
+    number 1 dn 1
+    dtmf-relay sip-notify
+    username #$34T#23 password #$34T#23
+    codec g711ulaw
+  voice register pool 2
+    id mac #othm0bilemac#
+    number 1 dn 2
+    dtmf-relay sip-notify
+    username #$34T#24 password #$34T#24
+    codec g711ulaw
+	end
+~~~
