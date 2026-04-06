@@ -1799,6 +1799,7 @@ Cisco Unified Call Manager | [Unified Communications and Collaboration.](https:/
 ---
 &nbsp;
 
+
 ### Requirements to make IP Phones Operational
 1. &nbsp;
 2. &nbsp;
@@ -1841,11 +1842,13 @@ conf t
  end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### Know the jobs of a Call Manager
 
@@ -1890,9 +1893,11 @@ show dial-peer voice summary
 csim start #$34T#00
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 Modify the tone of the phone.
 ~~~
@@ -1903,11 +1908,13 @@ conf t
   end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## ⚙️ 2. IP Phones (RJ45) - Cisco Skinny Client Control Protocol (SCCP)
 *What kind of phones do enterprise use?*
@@ -1930,12 +1937,7 @@ conf t
 > Problem: No Configuration Files fo IP Phones  
 > Solution:
 
-
 <br>
-<br>
-
----
-&nbsp;
 
 ~~~
 !@CUCM
@@ -1949,10 +1951,6 @@ conf t
   ip source-address 10.#$34T#.100.8 port 2000
   end
 ~~~
-
-<br>
-
-*Why 10.#$34T#.100.8? __TFTP__*
 
 <br>
 
@@ -2020,11 +2018,13 @@ conf t
 > [!NOTE]
 > Depending on the ephone, __`create cnf-files`__ will need to be pasted twice.
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## ⚙️ 3. Video Calls
 
@@ -2052,11 +2052,13 @@ conf t
 end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## ⚙️ 4. Allow Incoming & Outgoing Calls
 
@@ -2065,7 +2067,6 @@ end
 > Symptom: Phone becomes busy when calling other branches  
 > Problem: No configurations for Incoming/Outgoing Calls  
 > Solution:
-
 
 <br>
 
@@ -2077,8 +2078,6 @@ conf t
   ipv4 0.0.0.0 0.0.0.0
  end
 ~~~
-
-<br>
 
 ~~~
 !@CUCM
@@ -2155,14 +2154,17 @@ conf t
   destination-pattern 92..
   session target ipv4:10.92.100.8
   codec g711ULAW
+ no dial-peer voice #$34T# Voip
  end
 ~~~
+
 
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## ⚙️ 5. Interactive Voice Response System (IVRS)
 *How do large call centers handle numerous calls?*
@@ -2235,11 +2237,13 @@ config t
   end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 Review the jobs of a call manager:
  1. &nbsp;
@@ -2247,12 +2251,14 @@ Review the jobs of a call manager:
  3. &nbsp;
  4. &nbsp;
  5. &nbsp;
-  
+
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### Requirements to make IP Phones Operational
 1. &nbsp;
@@ -2285,9 +2291,11 @@ conf t
  end
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 ## ☁️ Remote Access | [JUMPSERVER](https://www.jumpserver.com/)
 ### 🎯 Exercies 06: Attempt to establish a telnet session with the call manager
@@ -2301,11 +2309,13 @@ Is the device pingable?
 10.#$34T#.100.8
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### 📃 Full Script
 
@@ -2482,6 +2492,7 @@ conf t
   destination-pattern 92..
   session target ipv4:10.92.100.8
   codec g711ULAW
+ no dial-peer voice #$34T# Voip
  end
  
 !@IVRS
@@ -2527,11 +2538,13 @@ config t
 
 </details>
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### 💾 Save the configurations
 ~~~
@@ -2539,11 +2552,13 @@ config t
 copy run start
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## 🌐 Site Connectivity
 *When to use UTP and Fibre Optic*
@@ -2554,10 +2569,10 @@ copy run start
 
   | Name            | Speed    | IEEE      |
   | ---             |  ---     | ---       |
-  | Ethernet        | 10 Mbps  |           |
-  | FastEthernet    | 100 Mbps |           |
-  | GigEthernet     | 1 Gbps   |           |
-  | TenGigEthernet  | 10 Gbps  |           |
+  | Ethernet        |          |           |
+  | FastEthernet    |          |           |
+  | GigEthernet     |          |           |
+  | TenGigEthernet  |          |           |
 
 <br>
 
@@ -2571,52 +2586,19 @@ copy run start
   | Conductor, Bedding, Sheathing                    | Core, Cladding, Coating              |
   | Affected by electrical and magnetic interference | Comprised of insulated glass strands |
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## 🔧 Configure EDGE
 ### 🏨 Establish connectivity to your enterprise.
 *How do you gain access to the internet?*
 
-&nbsp;
----
-&nbsp;
-
-*What is the maximum distance of a UTP cable? 100m?*
-
-Network Scopes
-  - 🏠 LAN                  Local Area Network
-  - 🌎 WAN                  Wide Area Network
-
 <br>
-
-PLDT Home vs PLDT Enterprise
-  - 🌃 MAN                  Metropolitan Area Network
-                         PLDT Enterprise Metro Ethernet
-
-<br>
-
-Transport technologies
-  - Leased Line
-  - SDWAN
-  - MPLS VPLS            (Pseudowire, L3 & L2)
-  - VPN                  (EVPN)
-
-<br>
-
-*Why PLDT?*
-  __Submarine Cable Map__
-
-*Why NOT PLDT?*
-  - Cabling
-  - [Service Reliability](https://www.pldthome.com/termsandconditions)
-
-&nbsp;
----
-&nbsp;
 
 *How to know if you are connected to PLDT? __SCN - `show cdp neighbor`__*
 
@@ -2625,11 +2607,13 @@ Transport technologies
 show cdp neighbor
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 > __FAQ (Knowledge Database)__   
 > Title: Bootstrap Configurations for EDGE   
@@ -2670,11 +2654,13 @@ conf t
   end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 > __FAQ (Knowledge Database)__   
 > Title: Jobs of an EDGE Router   
@@ -2684,11 +2670,12 @@ conf t
 
 ~~~
 Jobs of an EDGE Router:
-1. Static Routing 
-2. Default Routing 
-3. EIGRP Routing 
-4. OSPF Routing 
-5. BGP Routing 
+1.  
+2.  
+3.  
+4.  
+5. 
+6. 
 ~~~
 
 <br>
@@ -2741,20 +2728,11 @@ conf t
  end
 ~~~
 
-&nbsp;
----
-&nbsp;
-
-Verify: *How can you check the list of routes?  __SIR - `show ip route`__*
-
-~~~
-!@CoreBABA, CUCM, EDGE
-show ip route
-~~~
 
 &nbsp;
 ---
 &nbsp;
+
 
 *How do you configure routes on windows?*
 
@@ -2764,11 +2742,13 @@ route add 10.0.0.0 mask 255.0.0.0 10.#$34T#.1.4
 route add 200.0.0.0 mask 255.255.255.0 10.#$34T#.1.4
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### ⚙️ 2. OSPF ROUTING
 *At what capacity do you want your devices to run?*
@@ -2809,18 +2789,22 @@ network 10.#$34T#.100.0 0.0.0.255 area 0
 end
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 *Verify: How to check if OSPF is working? <br>
   __SIP - `show ip protocols`__ <br>
   __SION - `show ip ospf neighbor`__ <br>
   __SIRO - `show ip route ospf`__* <br>
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 ### Now that routing is in place, there's no need to jump to access CUCM.
 Ping
@@ -2833,6 +2817,7 @@ ping 10.#$34T#.100.8               CUCM
 ping 10.#$34T#.#$34T#.1            EDGE
 ~~~
 
+
 <br>
 <br>
 
@@ -2840,16 +2825,8 @@ ping 10.#$34T#.#$34T#.1            EDGE
 &nbsp;
 
 
-### Dedicated Line vs Internet VPN
-
-<br>
-<br>
-
 ## 🧱 Setup a Firewall (CSR1000v)
-   
-<br>
-
-__Ordinary Firewall vs NGFW__
+*`Ordinary Firewall` vs `NGFW` vs `WAF`*
 
 <br>
 <br>
@@ -2857,6 +2834,7 @@ __Ordinary Firewall vs NGFW__
 ### `fbi.gov`   vs   `neu.edu.ph`   vs   `dpwh.gov.ph`
 - Threat Defense
 - Intrusion Detection
+- Intrusion Prevention System
 - Open Ports: HTTP, HTTPS, SSH, DNS
 
 <br>
