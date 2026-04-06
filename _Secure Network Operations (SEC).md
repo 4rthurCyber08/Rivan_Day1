@@ -17,11 +17,13 @@ Import the repositories.
  - SecPlus701 : https://github.com/rivancorp/SECplus701
  - RivanSecPlus701 : https://github.com/rivancorp/RivanSecPlus701
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## 📂 Create your own folder in the desktop
 ~~~
@@ -32,11 +34,13 @@ cd _name-#$34T#
 dir
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 # 🏦 Secure Enterprise Network Architecture
 
@@ -102,11 +106,13 @@ Examples:
   | SSO (Stateful Switchover)
   | NSF (Non-stop Forwarding)
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## 🔌 Wired and wireless network.
 *How many devices do you have right now that can connect to the internet?*
@@ -133,11 +139,13 @@ Wifi standards | [IEEE (Institute of Electrical and Electronics Engineers)](http
   - WiFi 6     
   - WiFi 7     
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## 🔍 Implement security solutions.
 *What is more valuable than gold? __Data__*
@@ -155,11 +163,13 @@ Network security infrastructure
 
 Made in US 🇺🇸 vs Made in China 🇨🇳
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 # 🔧 Access the CLI
 *How can you tell if a device is expensive? It has a __Console Port__*
@@ -170,11 +180,13 @@ Serial Cable
   - VGA, USB
   - Ugreen
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 # 📤 IT Service Management
 *If it is not documented, it never existed.*
@@ -221,9 +233,11 @@ __5. Ping to verify setup for the virtual machine.__
 ping rivan.cloudsoc.com
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 ## 🔄 ITSM Process | Implementing Cybersecurity best practices
 ### 🏃 Service Delivery Team
@@ -231,29 +245,63 @@ http://rivan.cloudsoc.com/otrs/index.pl
 > Username: admin   
 > Password: C1sc0123  
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 ### 🙇 Service Desk
 http://rivan.cloudsoc.com/otrs/customer.pl  
 > Username: user1  
 > Password: C1sc0123
 
+
 &nbsp;
 ---
 &nbsp;
 
+
 ## 📦 Operational Support System
 *How easy is it to bring home items from your company?*
 
-- &nbsp;
-- &nbsp;
-- &nbsp;
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 
-### 🎯 Exercise 01: Register Windows Server 2025 to your company's database.
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+### 🎯 Exercise 01: Create a Customer User Account
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+### 🎯 Exercise 02: Register Windows Server 2025 to your company's database.
 
 __1. Access CMDB__  
 
@@ -290,10 +338,16 @@ Get-WmiObject win32_bios | select Serialnumber
 ~~~
 
 <br>
+
+Expiration Date:
+
+
+<br>
 <br>
 
 ---
 &nbsp;
+
 
 ## 🚀 Deploy CoreTAAS
 ### ⭐ 1. Register CoreTAAS to your company's database, including a *FAQ* to configure the devices.
@@ -339,14 +393,16 @@ conf t
  end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
 
+
 ## 🚀 Deploy CoreBABA
-### 🎯 Exercies 01: Register CoreBABA to your company's database.
+### 🎯 Exercies 03: Register CoreBABA to your company's database.
 
 <br>
 <br>
@@ -354,6 +410,32 @@ conf t
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<br>
+<br>
+
+---
+&nbsp;
+
 
 ## Know the jobs of a Switch
 ### ⚙️ 1. __POE__
@@ -371,24 +453,18 @@ conf t
 
 <br>
 
-Which device consumes the most power? __SPI - `show power inline`__
-~~~
-!@CoreBABA
-show power inline
-~~~
-
-<br>
-
 > __CMDB__  
 > Name: CoreBABA  
 > Description: 1st Job of a Switch - PoE  
 >   Switches need to supply the right amount of power depending on the needs of end devices.  
+
 
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### ⚙️ 2. SVI (Switch Virtual Interface)
 *Why segment network traffic? __WireShark__*
@@ -452,20 +528,13 @@ Verify Connectivity:
 ping 10.#$34T#.1.4
 ~~~
 
-<br>
-
-Although unsecure, why do some companies still utilize a Flat Network? *Simple and low cost*  
-__BUT__  
-*You get what you pay for*
-- __Slow network traffic__ | Performance Bottlenecks
-- __Security Risks__ | Succeptible to attacks 
-- __Single point of failure__
 
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 # ⭐ Fundamental Security Concepts
 1. __C__
@@ -478,13 +547,6 @@ __BUT__
 
 ### 🔐 Confidentiality
 
-### 5 Phases of Ethical Hacking
-__1. Reconnaissance - gather information.__
-
-### `cia.gov`    vs    `neu.edu.ph`   vs   `sti.edu.ph`   vs   `dpwh.gov.ph`
-
-<br>
-
 ~~~
 !@cmd
 ping 10.#$34T#.1.4
@@ -495,13 +557,12 @@ ping 10.#$34T#.1.2
 
 ~~~
 !@cmd
-nmap -sP 10.28.0.0/24
-nmap -O 10.28.0.0/24
+nmap -sP 10.3.3.0/24
+nmap -O 10.3.3.0/24
 ~~~
 
 <br>
 
-__2. Scanning - find open ports, active devices, and services. Find Vulnerabilities__
 ~~~
 !@cmd
 nmap -v 10.#$34T#.1.2
@@ -514,28 +575,14 @@ Is port __445/Microsoft-DS & 139/ServerMessageBlock__ open?
 
 <br>
 
-__3. Gaining Access - Utilize weaknesses and establish connectivity__
 *How to access port 445 because you don't have a Firewall!*
 ~~~
 !@cmd
-net use \\10.28.0.x\ipc$
+net use \\10.3.3.x\ipc$ /user:administrator C1sc0123
 net use x: /delete
-net use x: \\10.28.0.x\c$
+net use x: \\10.3.3.x\c$
 ~~~
 
-<br>
-
-__4. Maintain Access - Install backdoors, rootkits, or Trojan for continued access.__
-ex. Keylogger
-
-<br>
-
-__5. Clear Tracks - remain under the radar. Wipe logs, conceal files, manipulate timestamps.__
-Detect who is connected to you
-~~~
-!@cmd
-netstat -s -p tcp
-~~~
 
 <br>
 <br>
@@ -543,7 +590,8 @@ netstat -s -p tcp
 ---
 &nbsp;
 
-### 🎯 Exercise 02: Why use VPN when you are WFH
+
+### 🎯 Exercise 04: Why use VPN when you are WFH
 ~~~
 !@CoreTAAS
 conf t
@@ -593,11 +641,44 @@ conf t
   end
 ~~~
 
+__Parser View__
+~~~
+!@CoreTAAS
+conf t
+ aaa new-model
+ aaa authentication login default local
+ aaa authorization exec default local
+ line vty 0 14
+  transport input all
+  login authentication default
+ !
+ parser view T1
+  secret pass
+  commands exec include configure terminal
+  commands exec include show ip interface brief
+  commands exec include show interface *
+  commands configure include interface
+  commands configure include interface GigabitEthernet1 
+  commands interface include shutdown
+  commands interface include no shutdown
+  exit
+ username tier1 view T1 secret pass
+ username tier2 privilege 15 secret pass
+ end
+~~~
+
+
+<br>
+
+*__Confidentiality__ is the security concept that ensures data is protected from unauthorized access or __Disclosure__.*
+
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### ✉️ Integrity
 ~~~
@@ -605,9 +686,6 @@ conf t
 certutil -hashfile SERVER_EVAL_x64FRE_en-us.iso md5
 ~~~
 
-<br>
-
-Search on Google: `SERVER_EVAL_x64FRE_en-us.iso md5 hash`
 
 <br>
 <br>
@@ -615,26 +693,16 @@ Search on Google: `SERVER_EVAL_x64FRE_en-us.iso md5 hash`
 ---
 &nbsp;
 
+
 ### 🔀 Availability
 *Avoid a single point of failure*
 
-<br>
-
-Expensive Switches have __Loop Avoidance__
-
-<br>
 
 Execute a persistent ping
 ~~~
 !@cmd
 ping 10.#$34T#.1.2 -t
 ~~~
-
-<br>
-
-Combine Cables to achieve higher Bandwidth.
-
-<br>
 
 ~~~
 !@CoreBABA & CoreTAAS
@@ -651,25 +719,32 @@ conf t
 show int po1 | inc BW
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
 
+
 ### ⚙️ 3. DHCP / BOOTPS & BOOTPC
 *In a network, which device should be a DHCP Server? __It depends.__*
 
 | Network     | DHCP Device |
 | ---         |     ---     |
-| SOHO        | Router      |
+| SOHO        |             |
 |             |             |
 | Enterprise  |             |
-| Medium Biz  | Firewall    |
-| Large Biz   | Core Switch |
+| Medium Biz  |             |
+| Large Biz   |             |
+
 
 <br>
 <br>
+
+---
+&nbsp;
+
 
 🔴 __Creating a Rogue DHCP Server:__
 - WireShark
@@ -677,7 +752,7 @@ show int po1 | inc BW
 
 <br>
 
-__D3Pentest__
+__\_Pentest__
 ~~~
 !@linux
 nmcli connection add \
@@ -695,22 +770,6 @@ nmcli connection up TUNAYNALAN
 <br>
 
 
-| Keys       | Value         |
-| ---        | ---           |
-| Server IP  | 10.#$34T#.1.20    |
-| Start      | 10.#$34T#.1.50    |
-| End        | 10.#$34T#.1.100   |
-| Lease      | 1200          |
-| Renew      | 1200          |
-| SubnetMask | 255.255.25.50 |
-| Router     | 10.#$34T#.1.4     |
-| DNS-Server | 10.#$34T#.1.20    |
-| Domain     | FAKEMGMT.COM      |
-
-
-<br>
-
-
 > __FAQ (Knowledge Database)__   
 > Title: 3rd Job of a Switch - DHCP  
 > Symptom: Lack of IP addresses.  
@@ -719,6 +778,7 @@ nmcli connection up TUNAYNALAN
 
 
 <br>
+
 
 ~~~
 !@CoreTAAS
@@ -760,10 +820,10 @@ conf t
 
 | States      | Type      |
 | ---         | ---       |
-| Discover    | Broadcast |
-| Offer       | Unicast   |
-| Request     | Broadcast |
-| Acknowledge | Unicast   |
+| Discover    |           |
+| Offer       |           |
+| Request     |           |
+| Acknowledge |           |
 
 
 <br>
@@ -771,6 +831,7 @@ conf t
 
 ---
 &nbsp;
+
 
 ### ⚙️ 4. VLAN Creation & VLAN Management
 *Ports must be placed in the correct VLANs.*
@@ -784,9 +845,11 @@ conf t
 show vlan brief
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 Just because there's an SVI doesn't mean there's a VLAN.
 
@@ -802,10 +865,11 @@ Just because there's an SVI doesn't mean there's a VLAN.
 <br>
 
 ~~~
-!@CoreBABA
+!@CoreTAAS
 conf t
- vlan 1
-  name MGMTVLAN
+ vtp mode server
+ vtp domain SEC
+ vtp version 2
  vlan 10
   name WIFIVLAN
  vlan 50
@@ -815,9 +879,20 @@ conf t
   end
 ~~~
 
+~~~
+!@CoreBABA
+conf t
+ vtp mode server
+ vtp domain SEC
+ vtp version 2
+ end
+~~~
+
+
 &nbsp;
 ---
 &nbsp;
+
 
 Place Switchports in their correct VLAN.
 
@@ -850,20 +925,24 @@ conf t
  end
 ~~~
 
+
 <br>
 
+
+🔴 __VTP Revision Number Attack:__
 *What happens when a device is connected to a VLAN that does not exist? __Orphan-ports__*
 
+<br>
+<br>
 <br>
 <br>
 
 ---
 &nbsp;
 
+
 ## ⚙️ 5. MAC Learning & MAC Reservation
 *What is in a MAC Address?*
-- OUI (Organizationally Unique Identifier)
-- NIC
 
 <br>
 
@@ -937,9 +1016,11 @@ Verify DHCP: __SIDB - `show ip dhcp bindings`__
 show ip dhcp bindings
 ~~~
 
+
 &nbsp;
 ---
 &nbsp;
+
 
 Review the jobs of a switch:
  1. &nbsp;
@@ -947,6 +1028,7 @@ Review the jobs of a switch:
  3. &nbsp;
  4. &nbsp;
  5. &nbsp;
+
  
 <br>
 <br>
@@ -954,24 +1036,8 @@ Review the jobs of a switch:
 ---
 &nbsp;
 
-### 🔴 RED Team
-Hack your LAN to better protect it.
-1. Run __\_D3PentestVM__
-2. Login to the VM
-> Username: kali  
-> Password: kali  
 
-3. Run yersinia
-
-~~~
-@Kali
-sudo yersinia -G
-~~~
-
-<br>
-
-4. Perform various Attacks.
-
+🔴 __CDP Flooding Attack__
 Verify:
 ~~~
 !@CoreBABA
@@ -1038,16 +1104,6 @@ IT Support Team
 
 
 ### STEP 2 - User checks the logs, then discover that Certain Switches have unusually high traffic.
-~~~
-!@Cisco
-show process cpu | inc uti
-~~~
-
-
-<br>
-
-
-`:: Move ::`  Escalate the issue to [Tier 2 NOC] 
 
 
 <br>
@@ -1165,35 +1221,11 @@ Proposed Solution:
 <br>
 <br>
 
-
-- Link: Hardware (CoreSwitch)  
-- Involved Persons: Manager & CAB (Change Advisory Board)  
-- WorkOrder Agent: Admin  
-
-
-<br>
-<br>
-
 ---
 &nbsp;
 
 
 ### STEP 4 - Create a Work Order for [Impact Analysis] & Plan Assessment
-
-__ITIL-Based Impact Analysis Framework__  
-- Identify the Scope of the Change - Determine affected users, services, network, hardware, etc  
-- Identify Stakeholders - Who are involved in managing the change  
-- Assess Impact Levels - Structured Categories  
-- Identify Risks - Document mitigation and rollback plans.  
-- Analyze Dependencies - Map related systems and processes  
-- Document Findings - Summary of scope, stakeholders, risks, impact, and dependencies  
-- Decision Support - CAB approval, Scheduling  
-
-
-&nbsp;
----
-&nbsp;
-
 
 __WorkOrder [IMPACT ANALYSIS]__  
 - Title: Technical & Risk Assestment / Action Plan  
@@ -1246,16 +1278,6 @@ conf t
 
 
 ### STEP 5 - Create a Work Order for [Approval/Denial]
-CAB (Change Advisory Board) Members:
-- Network Manager
-- IT Operations Lead
-- Security Officer
-
-
-&nbsp;
----
-&nbsp;
-
 
 __Work Order [APPROVAL/DENIAL]__  
 - Title:  CAB Review Approval/Denial  
@@ -1353,13 +1375,8 @@ conf t
   end
 show ip arp inspection
 show ip arp inspection statistics
- 
- 
-Post Implementation
-- CPU utilization normalized
-- MAC address table state
-- No unexpected port shutdowns
-- Users confirmed stable connectivity [Ticket Reply]
+
+
 ~~~
 
 
@@ -1394,8 +1411,6 @@ Lessons Learned
 - Access switches lacked L2 security hardening baseline
 - Need standard switch hardening template
 
-
-Ideally Performed with RCA (Root Cause Analysis)
 ~~~
 
 
@@ -1473,14 +1488,6 @@ __A Review on the 5 ITSM Change Process__
 ### STEP 9 - Report on every single Work Order to Change states
 
 1. __REQUEST__
-- Formally propose a change to IT infrastructure, service, or configuration.  
-
-<br>
-
-This stage ensures:  
-  The change is documented  
-  The business need is clear  
-  Initial scope is defined  
 
 <br>
 
@@ -1499,16 +1506,6 @@ Terms:
 
 
 2. __IMPACT ANALYSIS__
-- Assess risk, impact, dependencies, and feasibility before approval.
-
-<br>
-
-- Identify affected services and users
-- Analyze technical dependencies
-- Evaluate risk level
-- Estimate downtime
-- Define rollback plan
-- Assign risk score
 
 <br>
 
@@ -1530,14 +1527,6 @@ Terms:
 
 
 3. __APPROVAL/DENIAL__
-- Ensure governance and business alignment before execution.  
-
-<br>
-
-Present change to CAB  
-Review risk & impact analysis  
-Approve, reject, or request modification  
-Schedule implementation window  
 
 <br>
 
@@ -1556,7 +1545,6 @@ Terms:
 
 
 4. IMPLEMENTATION
-- Execute the approved change in a controlled and documented manner.
 
 <br>
 
@@ -1584,14 +1572,6 @@ Control Mechanisms
 
   
 5. REVIEW/REPORT
-- Evaluate effectiveness and capture lessons learned.
-
-<br>
-
-Conduct PIR meeting  
-Compare expected vs outcome  
-Identify Root Cause  
-Update documentation  
 
 <br>
 
@@ -1619,11 +1599,11 @@ Terms:
 3. MAC Address Forwarding
 4. Layer 2 Loop Avoidance
 
-<br>
 
 &nbsp;
 ---
 &nbsp;
+
 
 ### PortSec
 *Ensure your devices don't get swapped.*
@@ -1670,80 +1650,13 @@ config t
 show int status err-disable
 ~~~
 
-&nbsp;
----
-&nbsp;
-
-### Spanning Tree
-*What switches hate the most?*
-
-~~~
-!@cmd
-ping 10.#$34T#.1.100 -t
-~~~
-
-<br>
-
-How to spot a healthy switch.
- - Lights are green - Super Healthy
- - Lights are amber - You are protected
-
-<br>
-
-__How to get fired immediately.__
-~~~
-!@CoreTAAS & CoreBABA
-config t
- default int range fa0/10-12
- no spanning-tree vlan 1-999
- end
-~~~
-
-<br>
-
-Save your network
-~~~
-config t
- spanning-tree vlan 1-999
- end
-~~~
-
-&nbsp;
----
-&nbsp;
-  
-### `32768   vs   28672   vs   24576`
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-~~~
-!@CoreTAAS
-conf t
- spanning-tree vlan 1-1000 root primary
- end
-~~~
-
-<br>
-
-~~~
-!@CoreBABA
-conf t
- spanning-tree vlan 1-1000 root secondary
- end
-~~~
 
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### 📃 Full Script
 <details>
@@ -1836,11 +1749,13 @@ conf t
 
 </details>
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### 💾 Save the configurations
 ~~~
@@ -1848,11 +1763,13 @@ conf t
 copy run start
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## 🔧 Configure CUCM
 ### 📠 Enterprise Communication   
