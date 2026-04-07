@@ -1966,36 +1966,13 @@ conf t
   end
 ~~~
 
-<br>
-
 ~~~
 !@EDGE
 conf t
  ip access-list extended NAT-POLICY
-  deny ip 10.#$34T#.0.0 0.0.255.255 10.11.0.0 0.0.255.255
-  deny ip 10.#$34T#.0.0 0.0.255.255 10.12.0.0 0.0.255.255
-  deny ip 10.#$34T#.0.0 0.0.255.255 10.21.0.0 0.0.255.255
-  deny ip 10.#$34T#.0.0 0.0.255.255 10.22.0.0 0.0.255.255
-  deny ip 10.#$34T#.0.0 0.0.255.255 10.31.0.0 0.0.255.255
-  deny ip 10.#$34T#.0.0 0.0.255.255 10.32.0.0 0.0.255.255
-  deny ip 10.#$34T#.0.0 0.0.255.255 10.41.0.0 0.0.255.255
-  deny ip 10.#$34T#.0.0 0.0.255.255 10.42.0.0 0.0.255.255
-  deny ip 10.#$34T#.0.0 0.0.255.255 10.51.0.0 0.0.255.255
-  deny ip 10.#$34T#.0.0 0.0.255.255 10.52.0.0 0.0.255.255
-  deny ip 10.#$34T#.0.0 0.0.255.255 10.61.0.0 0.0.255.255
-  deny ip 10.#$34T#.0.0 0.0.255.255 10.62.0.0 0.0.255.255
-  deny ip 10.#$34T#.0.0 0.0.255.255 10.71.0.0 0.0.255.255
-  deny ip 10.#$34T#.0.0 0.0.255.255 10.72.0.0 0.0.255.255
-  deny ip 10.#$34T#.0.0 0.0.255.255 10.81.0.0 0.0.255.255
-  deny ip 10.#$34T#.0.0 0.0.255.255 10.82.0.0 0.0.255.255
-  deny ip 10.#$34T#.0.0 0.0.255.255 10.91.0.0 0.0.255.255
-  deny ip 10.#$34T#.0.0 0.0.255.255 10.92.0.0 0.0.255.255
-  no deny ip 10.#$34T#.0.0 0.0.255.255 10.#$34T#.0.0 0.0.255.255
   permit ip any any
   end
 ~~~
-
-<br>
 
 ~~~
 !@EDGE
@@ -2004,17 +1981,16 @@ conf t
  end
 ~~~
 
-<br>
-
 ~~~
 !@EDGE
 conf t
  ip route 0.0.0.0 0.0.0.0 200.0.0.1
  ip name-server 8.8.8.8
  ip domain lookup
- ip domain lookup source int g0/0/0
+ ip domain lookup source-int g0/0/0
  end
 ~~~
+
 
 <br>
 <br>
@@ -2022,20 +1998,21 @@ conf t
 ---
 &nbsp;
 
+
 ### Network Assurance (HSRP)
 
 __PRIMARY__
 ~~~
-!@D1
+!@C1
 conf t
+ track 1 int vlan 10 line-protocol
  interface Vlan 10
-  standby 1 ip 10.2.1.254
+  standby 1 ip 10.1.10.105
   standby 1 priority 110
   standby 1 preempt
+  standby 1 track 1 decrement 60
   end
 ~~~
-
-<br>
 
 ~~~
 !@CoreTAAS
@@ -2050,18 +2027,19 @@ config t
   end
 ~~~
 
+
 <br>
+
 
 __SECONDARY__
 ~~~
-@D2
+@C2
 conf t
  interface Vlan 10
-  standby 1 ip 10.2.1.254
+  standby 1 ip 10.1.10.105
+  standby 1 priority 90
   end
 ~~~
-
-<br>
 
 ~~~
 !@CoreBABA
@@ -2074,11 +2052,13 @@ config t
   end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### Network Tunneling
 ~~~
@@ -2091,8 +2071,6 @@ conf t
   default-information originate always
   end
 ~~~
-
-<br>
 
 ~~~
 !@EDGE
@@ -2125,14 +2103,32 @@ conf t
   ip nhrp map 172.16.1.91 200.0.0.91
   ip nhrp map 172.16.1.92 200.0.0.92
   no ip nhrp map 172.16.1.#$34T# 200.0.0.#$34T#
-  end
-~~~
-
-<br>
-
-~~~
-!@EDGE
-conf t
+  exit
+  !
+ no ip access-list extended NAT-POLICY
+ ip access-list extended NAT-POLICY
+  deny ip 10.#$34T#.0.0 0.0.255.255 10.11.0.0 0.0.255.255
+  deny ip 10.#$34T#.0.0 0.0.255.255 10.12.0.0 0.0.255.255
+  deny ip 10.#$34T#.0.0 0.0.255.255 10.21.0.0 0.0.255.255
+  deny ip 10.#$34T#.0.0 0.0.255.255 10.22.0.0 0.0.255.255
+  deny ip 10.#$34T#.0.0 0.0.255.255 10.31.0.0 0.0.255.255
+  deny ip 10.#$34T#.0.0 0.0.255.255 10.32.0.0 0.0.255.255
+  deny ip 10.#$34T#.0.0 0.0.255.255 10.41.0.0 0.0.255.255
+  deny ip 10.#$34T#.0.0 0.0.255.255 10.42.0.0 0.0.255.255
+  deny ip 10.#$34T#.0.0 0.0.255.255 10.51.0.0 0.0.255.255
+  deny ip 10.#$34T#.0.0 0.0.255.255 10.52.0.0 0.0.255.255
+  deny ip 10.#$34T#.0.0 0.0.255.255 10.61.0.0 0.0.255.255
+  deny ip 10.#$34T#.0.0 0.0.255.255 10.62.0.0 0.0.255.255
+  deny ip 10.#$34T#.0.0 0.0.255.255 10.71.0.0 0.0.255.255
+  deny ip 10.#$34T#.0.0 0.0.255.255 10.72.0.0 0.0.255.255
+  deny ip 10.#$34T#.0.0 0.0.255.255 10.81.0.0 0.0.255.255
+  deny ip 10.#$34T#.0.0 0.0.255.255 10.82.0.0 0.0.255.255
+  deny ip 10.#$34T#.0.0 0.0.255.255 10.91.0.0 0.0.255.255
+  deny ip 10.#$34T#.0.0 0.0.255.255 10.92.0.0 0.0.255.255
+  no deny ip 10.#$34T#.0.0 0.0.255.255 10.#$34T#.0.0 0.0.255.255
+  permit ip any any
+  exit
+ !
  ip route 10.11.0.0 255.255.0.0 172.16.1.11 252
  ip route 10.12.0.0 255.255.0.0 172.16.1.12 252
  ip route 10.21.0.0 255.255.0.0 172.16.1.21 252
@@ -2156,16 +2152,15 @@ conf t
  end
 ~~~ 
 
+
 <br>
 <br>
 
 ---
 &nbsp;
 
+
 ### OSPF vs EIGRP
-
-<br>
-
 ~~~
 !@EDGE
 conf t
@@ -2188,8 +2183,6 @@ conf t
   end
 ~~~
 
-<br>
-
 ~~~
 !@EDGE
 conf t
@@ -2201,11 +2194,13 @@ conf t
   end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### Review  
 Requirements for IP Phones to work  
