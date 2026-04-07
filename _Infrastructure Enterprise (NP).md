@@ -5,37 +5,12 @@
 *"There's no better teacher than experience"*
 
 
-&nbsp;
-## 💡 Approach to Network Programmability
-*"A new era for Cisco Certifications"*
-
-Cisco Certified Network Automation
-
-- Powershell, Bash
-- Python, Ruby, TCL
-- JSON, YAML
-- REST APIs
-- Ansible, Terraform, Chef, Puppet, etc.
-- Collaboration Platforms (GitHub)
-
 <br>
 <br>
 
 ---
 &nbsp;
 
-## 📋 Prove what you are doing.
- - Create a Github account: https://github.com/
- - Create a Postman account: https://www.postman.com/
-
-Import the repositories.
- - Rivan_Day1 : https://github.com/art-stacks/Rivan_Day1
-
-<br>
-<br>
-
----
-&nbsp;
 
 ## 📂 Create your own folder in the desktop
 ~~~
@@ -51,11 +26,13 @@ dir
 
 # 💻 Build your network. 
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## 🧱 Hierarchical Network Design
   *What is the most important part of a network? __The Core__*
@@ -85,45 +62,18 @@ Examples:
   | SSO (Stateful Switchover)
   | NSF (Non-stop Forwarding)
 
+
 <br>
 <br>
 
 ---
 &nbsp;
 
+
 ## In-house vs MSP
 On-Prem Devices vs RSTHayup Labs (3-tier Enterprise)
 
-
 <br> 
-<br> 
-<br> 
-<br> 
-
-
-~~~
-!@CoreBABA
-conf t
- hostname CoreBABA-#$34T#
- enable secret pass
- service password-encryption
- no ip domain lookup
- no logging cons
- line cons 0 
-  password pass
-  login
-  exec-timeout 0 0
- line vty 0 14
-  password pass
-  login
-  exec-timeout 0 0
- int vlan 1
-  ip add 10.#$34T#.1.4 255.255.255.0
-  no shut
-  end
-~~~
-
-<br>
 
 ~~~
 !@CoreTAAS
@@ -147,10 +97,33 @@ conf t
   end
 ~~~
 
+~~~
+!@CoreBABA
+conf t
+ hostname CoreBABA-#$34T#
+ enable secret pass
+ service password-encryption
+ no ip domain lookup
+ no logging cons
+ line cons 0 
+  password pass
+  login
+  exec-timeout 0 0
+ line vty 0 14
+  password pass
+  login
+  exec-timeout 0 0
+ int vlan 1
+  ip add 10.#$34T#.1.4 255.255.255.0
+  no shut
+  end
+~~~
+
 
 &nbsp;
 ---
 &nbsp;
+
 
 ### Remote Access
 
@@ -173,6 +146,7 @@ Telnet the following
 
 ---
 &nbsp;
+
 
 ## DISCOVERY PROTOCOL
 ### 🎯 Exercise 01: [3-Tier] Identify port connections between switches.
@@ -205,6 +179,7 @@ show cdp neighbor
 ---
 &nbsp;
 
+
 ### [3-Tier] SECURITY Best Practice 
 Task 1.
 - Disable CDP on Access Switches
@@ -214,28 +189,20 @@ Task 2.
 - Disable CDP on Distribution Switches towards access switches
 - Enable LLDP on D1 & D2, but only allow recieving traffic from A1,A2,A3
 
+
 <br>
 <br>
 
-__SOLUTION__  
 
-<br>
+### Solution
 
 Task 1.
 - Disable CDP on Access Switches
-~~~
-!@A1,A2,A3,A4
-conf t
- no cdp run
- end
-~~~
-
-<br>
-
 - Enable LLDP on Access Switches but only transmit LLDP traffic to D1 & D2
 ~~~
 !@A1,A2,A3
 conf t
+ no cdp run
  lldp run
  int range e1/1-2,e2/1-2
   lldp transmit
@@ -247,22 +214,13 @@ conf t
 
 Task 2.
 - Disable CDP on Distribution Switches towards access switches
-~~~
-!@D1,D2
-conf t
- int range e1/1-2,e2/1-2,e3/1-2
-  no cdp enable
-  end
-~~~
-
-<br>
-
 - Enable LLDP on D1 & D2, but only allow receiving traffic from A1,A2,A3
 ~~~
 !@D1,D2
 conf t
  lldp run
  int range e1/1-2,e2/1-2,e3/1-2
+  no cdp enable
   no lldp transmit
   lldp receive
   end
@@ -290,8 +248,6 @@ conf t
   end
 ~~~
 
-<br>
-
 ~~~
 !@CoreBABA
 conf t
@@ -304,53 +260,6 @@ conf t
 ~~~
 
  
-&nbsp; 
----
-&nbsp;
-
-
-__How to get fired!__
-~~~
-!@CoreTAAS & CoreBABA
-conf t
- no spanning-tree vlan 1-999
- end
-~~~
-
-<br>
-
-__Save your network__
-~~~
-!@CoreTAAS & CoreBABA
-conf t
- spanning-tree vlan 1-999
- end
-~~~
-
-
-&nbsp;
----
-&nbsp;
-
-### Frame Forwarding
-Structure of an Ethernet Frame
-
-| Layer  | Preamble | SFD | MAC Destination | MAC Source | 802.1Q TAG | Ethertype | Payload | FCS | IGP |
-| ---    | ---      | --- | ---             | ---        | ---        | ---       | ---     | --- | --- |
-| Length | 7        | 1   | 6               | 6          | 4          | 2         | 42-1500 | 4   | 12  |
-
-<br>
-
-### Error Handling
-1. __Giants__  
-2. __Runts__  
-3. __CRC__  
-4. __FCS Error__  
-4. __Collisions__  
-5. __Late Collisions__  
-6. __Overruns__  
-
-
 <br>
 <br>
 
@@ -384,80 +293,42 @@ show int trunk
 &nbsp;
 
 
-### 🎯 Exercise 02: [3-Tier] Trunk the links between switches
+### 🎯 Exercise 02: [3-Tier] Trunk the links between C1 & C2
 Task 1.
-- Configure the Open standard protocol for trunking on the links between Access & Distribution Switches.
-- Configure trunk links between Distribution & Core Switches using the IEEE Standard frame tagging method.
+- Configure the Open standard protocol for trunking on the links between Core Switches.
 - Make sure VLAN 1 is untagged on all switches.
 - Allow all VLANs
 
 <br>
-
-~~~
-!@C1,C2
-conf t
- int range __,__,__
-  switchport trunk encapsulation dot1q
-  switchport mode trunk
-  switchport trunk allowed vlan all
-  switchport trunk native vlan 1
-  no shut
-  end
-show int trunk
-~~~
-
 <br>
-
-~~~
-!@D1,D2
-conf t
- int range __,__,__
-  switchport trunk encapsulation dot1q
-  switchport mode trunk
-  switchport trunk allowed vlan all
-  switchport trunk native vlan 1
-  no shut
-  end
-show int trunk
-~~~
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 
-~~~
-!@A1,A2,A3
-conf t
- int range __,__
-  switchport trunk encapsulation dot1q
-  switchport mode trunk
-  switchport trunk allowed vlan all
-  switchport trunk native vlan 1
-  no shut
-  end 
-show int trunk
-~~~
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
 &nbsp;
 ---
 &nbsp;
 
-### ANSWER
-<details>
-<summary>Show Answer</summary>
 
 ~~~
 !@C1,C2
@@ -502,7 +373,55 @@ conf t
 show int trunk
 ~~~
 
-</details>
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+__How to get fired!__
+~~~
+!@CoreTAAS & CoreBABA
+conf t
+ no spanning-tree vlan 1-999
+ end
+~~~
+
+<br>
+
+__Save your network__
+~~~
+!@CoreTAAS & CoreBABA
+conf t
+ spanning-tree vlan 1-999
+ end
+~~~
+
+
+&nbsp;
+---
+&nbsp;
+
+
+### Frame Forwarding
+Structure of an Ethernet Frame
+
+| Layer  | Preamble | SFD | MAC Destination | MAC Source | 802.1Q TAG | Ethertype | Payload | FCS | IGP |
+| ---    | ---      | --- | ---             | ---        | ---        | ---       | ---     | --- | --- |
+| Length | 7        | 1   | 6               | 6          | 4          | 2         | 42-1500 | 4   | 12  |
+
+<br>
+
+### Error Handling
+1. __Giants__  
+2. __Runts__  
+3. __CRC__  
+4. __FCS Error__  
+4. __Collisions__  
+5. __Late Collisions__  
+6. __Overruns__  
 
 
 <br>
@@ -525,8 +444,6 @@ conf t
  end
 ~~~
 
-<br>
-
 ~~~
 !@CoreBABA & C2
 conf t
@@ -535,7 +452,10 @@ conf t
  end
 ~~~
 
+
 <br>
+<br>
+
 
 __Determine Port Roles__
 - Designated
@@ -543,14 +463,38 @@ __Determine Port Roles__
 - Alternate
 - Back
 
-<br>
-
-__Who is the Root?__
-Lowest Bridge ID (Priority + MAC Address)
 
 <br>
+<br>
 
-__How to determine Port Cost__
+---
+&nbsp;
+
+
+### Steps & Tie Breakers:
+1. Identify the Root Bridge
+    - Determine the Lowest Root Bridge ID (Priority & MAC) among all switches
+
+2. Identify Port Roles
+    - RP (Root Port) - 1 per Non-Root Bridge
+    - DP (Designated Port) - 1 per link
+    - AP (Alternate Port)
+
+3. Tie Breakers
+    - Lowest Path Cost to Root
+    - Lowest Bridge ID 
+    - Lowest port ID (Priority + Port Number) of the Other Switch(Sender)
+    - Lowest local port ID (Priority + Port Number)
+
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+### How to determine Port Cost
 1. Short Path Cost Method (IEEE 802.1D)
 
 | Link Speed | Default Cost |
@@ -585,13 +529,31 @@ show spanning-tree pathcost method
 __Port Cost__ = Reference Bandwidth / Link Speed
 __Default Ref BW__ = 20_000_000_000 bps
 
+
 <br>
 <br>
 
 ---
 &nbsp;
 
-### 🎯 Exercise 03: [3-Tier] Identify port roles.
+
+### 🎯 Exercise 03: Identify port roles.
+
+
+![EX_STP](img/ex_stp.png)
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -599,9 +561,9 @@ __Default Ref BW__ = 20_000_000_000 bps
 <br>
 <br>
 
-&nbsp;
 ---
 &nbsp;
+
 
 ### [3-Tier] Modify Path costs
 Task 1.
@@ -660,11 +622,13 @@ Who is __DARNA__ (__802.1D__)
 3. Learning (LRN) - Builds MAC address table but does not forward traffic
 4. Forwarding (FWD) - Forwards user traffic and BPDUs
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### 3. ⚡ WONDERWOMAN (802.1W)
 ~~~
@@ -715,8 +679,6 @@ conf t
   end
 ~~~
 
-<br>
-
 ~~~
 !@CoreBABA
 conf t
@@ -730,17 +692,16 @@ conf t
   end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
 
+
 ### 🎯 Exercise 04: [3-Tier] Determine STP Features
 What STP features should be applied on the network to optimize STP traffic and network performance.
-
-<br>
-<br>
 
 ~~~
 !@A1,A2,A3
@@ -756,8 +717,6 @@ conf t
   end
 ~~~
 
-<br>
-
 ~~~
 !@D1,D2
 conf t
@@ -769,8 +728,6 @@ conf t
   end
 ~~~
 
-<br>
-
 ~~~
 !@D2
 conf t
@@ -781,8 +738,6 @@ conf t
   end
 ~~~
 
-<br>
-
 ~~~
 !@C1,C2
 conf t
@@ -792,8 +747,6 @@ conf t
   end
 ~~~
 
-<br>
-
 ~~~
 !@C2
 conf t
@@ -802,9 +755,13 @@ conf t
   end
 ~~~
 
-&nbsp;
+
+<br>
+<br>
+
 ---
 &nbsp;
+
 
 ### [3-Tier] NIST SP 800-41r1 network security guidance recommends to enable PortFast & BPDU Guard Globally.
 ~~~
@@ -847,8 +804,6 @@ conf t
  end
 ~~~
 
-<br>
-
 ~~~
 !@CoreBABA,D1,D2,A1,A2,A3,A4
 conf t
@@ -859,8 +814,11 @@ conf t
  end
 ~~~
 
-Step 2: Configure VLANs
 
+<br>
+
+
+Step 2: Configure VLANs
 ~~~
 !@CoreTAAS,C1,C2
 conf t
@@ -871,8 +829,6 @@ conf t
  vlan 71-100
  end
 ~~~
-
-<br>
 
 ~~~
 !@CoreBABA
@@ -891,10 +847,11 @@ conf t
   end
 ~~~
 
+
 <br>
 
-Step 3: Enable 802.1S
 
+Step 3: Enable 802.1S
 ~~~
 !@CoreTAAS,CoreBABA,C1,C2,D1,D2,A1,A2,A3
 conf t
@@ -909,7 +866,9 @@ conf t
 show spanning-tree mst configuration
 ~~~
 
+
 <br>
+
 
 Reconfigure Port Priority
 ~~~
@@ -921,8 +880,6 @@ config t
  spanning-tree mst 3 root secondary
 end
 ~~~
-
-<br>
 
 ~~~
 !@CoreBABA,C2
@@ -938,11 +895,13 @@ Who is SUPERMAN (802.1S)
 Multiple VLANs sharing a spanning tree instance,  
 compared to PVST & RST where each VLANs is its own STP instance.
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### 5. X-MEN (802.1X)
 > [!IMPORTANT]
@@ -956,10 +915,41 @@ Requirements:
 
 
 <br>
+
+
+__Parser View__
+~~~
+!@CoreTAAS
+conf t
+ aaa new-model
+ aaa authentication login default local
+ aaa authorization exec default local
+ line vty 0 14
+  transport input all
+  login authentication default
+ !
+ parser view T1
+  secret pass
+  commands exec include configure terminal
+  commands exec include show ip interface brief
+  commands exec include show interface *
+  commands configure include interface
+  commands configure include interface GigabitEthernet1 
+  commands interface include shutdown
+  commands interface include no shutdown
+  exit
+ username tier1 view T1 secret pass
+ username tier2 privilege 15 secret pass
+ end
+~~~
+
+
+<br>
 <br>
 
 ---
 &nbsp;
+
 
 ### [3-Tier] Configure AAA-Based local database authentication on C1 & C2 
 
@@ -976,6 +966,7 @@ Requirements:
 
 ---
 &nbsp;
+
 
 ## Port Aggregation
 LACP vs PAGP
@@ -996,8 +987,6 @@ conf t
 show int po1 | inc BW
 ~~~
 
-<br>
-
 ~~~
 !@CoreBABA
 conf t
@@ -1007,6 +996,10 @@ conf t
   end
 show int po1 | inc BW
 ~~~
+
+
+<br>
+
 
 How does Port-Channel load balance
 - src-mac
@@ -1025,11 +1018,13 @@ conf t
   end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### 🎯 Exercise 05: [3-Tier] Configure Etherchannel links
 Note:
@@ -1054,8 +1049,6 @@ conf t
   port-channel min-links 3
   end
 ~~~
-
-<br>
 
 ~~~
 !@C2
@@ -1096,8 +1089,6 @@ conf t
   end
 ~~~
 
-<br>
-
 ~~~
 !@D2
 conf t
@@ -1115,6 +1106,10 @@ conf t
 ~~~
 
 
+<br>
+<br>
+
+
 Task3:
 - A1, A2, and A3 must use the open standard protocol for link aggregation. 
 - A1, A2, and A3 must participate in forming link aggregation on all linked ports.
@@ -1122,33 +1117,29 @@ Task3:
 ~~~
 !@A1
 conf t
- int range ___
+ int range e1/1-2
   channel-group 41 mode active
- int range ___
+ int range e2/1-2
   channel-group 44 mode active
   end
 ~~~
 
-<br>
-
 ~~~
 !@A2
 conf t
- int range ___
+ int range e1/1-2
   channel-group 42 mode active
- int range ___
+ int range e2/1-2
   channel-group 45 mode active
   end
 ~~~
 
-<br>
-
 ~~~
 !@A3
 conf t
- int range ___
+ int range e1/1-2
   channel-group 43 mode active
- int range ___
+ int range e2/1-2
   channel-group 46 mode active
   end
 ~~~
@@ -1184,8 +1175,6 @@ conf t
   end
 ~~~
 
-<br>
-
 ~~~
 !@CoreBABA
 conf t
@@ -1206,12 +1195,6 @@ conf t
   end
 ~~~
 
-<br>
-<br>
-
-Assign IP Addresses on PCs based on their specified VLAN.
-- Make sure PCs can communicate with C1 & C2 (Gateway)
-
 ~~~
 !@P1
 conf t
@@ -1220,8 +1203,6 @@ conf t
   ip add 10.1.10.101 255.255.255.224
   end
 ~~~
-
-<br>
 
 ~~~
 !@P2
@@ -1232,8 +1213,6 @@ conf t
   end
 ~~~
 
-<br>
-
 ~~~
 !@P3
 conf t
@@ -1243,8 +1222,6 @@ conf t
   end
 ~~~
 
-<br>
-
 ~~~
 !@P4
 conf t
@@ -1253,12 +1230,14 @@ conf t
   no shut
   end
 ~~~
+
   
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### DHCP
 ~~~
@@ -1293,7 +1272,9 @@ conf t
   end
 ~~~
 
+
 <br>
+
 
 | DHCP Options | Unit |
 | ---          | ---  |
@@ -1303,7 +1284,9 @@ conf t
 | 42           |      |
 | 150          |      |
 
+
 <br>
+
 
 DHCP States:
 1.
@@ -1314,11 +1297,13 @@ DHCP States:
 What type of data traffic is each state? (Unicast, Broadcast, Multicast)
 Base on Wireshark.
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### 🎯 Exercise 06: [3-Tier] Configure DHCP Pool for SALES
 Task 1.
@@ -1359,65 +1344,11 @@ Task 2.
 <br>
 <br>
 <br>
-
-&nbsp;
----
-&nbsp;
-
-### ANSWER
-<details>
-<summary>Show Answer</summary>
-	
-~~~
-!@C1
-conf t
- int vlan 50
-  no shut
-  ip add 192.168.50.1 255.255.255.0
-  exit
- ip dhcp excluded-address 192.168.50.1 192.168.50.99
- ip dhcp pool SALES.COM
-  network 192.168.50.0 255.255.255.0
-  default-router 192.168.50.1
-  domain-name SALES.COM
-  end
-~~~
-
-<br>
-
-~~~
-!@C2
-conf t
- int vlan 50
-  no shut
-  ip add 192.168.50.254 255.255.255.0
-  exit
- ip dhcp excluded-address 192.168.50.1 192.168.50.199
- ip dhcp pool SALES.COM
-  network 192.168.50.0 255.255.255.0
-  default-router 192.168.50.254
-  domain-name SALES.COM
-  end
-~~~
-
-<br>
-
-~~~
-!@P5
-conf t
- int e0/0
-  no shut
-  ip add dhcp
-  end
-~~~
-
-</details>
-
-<br>
 <br>
 
 ---
 &nbsp;
+
 
 ### VLAN Management
 *Did devices get IP from the correct VLAN?*
@@ -1446,7 +1377,9 @@ conf t
   end
 ~~~
 
+
 <br>
+
 
 __Assign RSTVM to VLAN 1__
 ~~~
@@ -1459,11 +1392,13 @@ conf t
   end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### 🎯 Exercise 07: [3-Tier] Assign end devices to their specified VLAN
 | Device | VLAN    |
@@ -1473,39 +1408,6 @@ conf t
 | P3     | FINANCE |
 | P4     | ADMIN   |
 | P5     | SALES   |
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-&nbsp;
----
-&nbsp;
-
-### ANSWER
-<details>
-<summary>Show Answer</summary>
 
 ~~~
 !@A1
@@ -1519,8 +1421,6 @@ conf t
   end
 ~~~
 
-<br>
-
 ~~~
 !@A2
 conf t
@@ -1533,8 +1433,6 @@ conf t
   end
 ~~~
 
-<br>
-
 ~~~
 !@A3
 conf t
@@ -1544,13 +1442,13 @@ conf t
   end
 ~~~
 
-</details>
 
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## MAC Learning
 ### IP Reservation
@@ -1567,67 +1465,13 @@ conf t
  end
 ~~~
 
-&nbsp;
----
-&nbsp;
-
-### [3-Tier] Reserve IP address for S1
-Task 1.
-- Assign S1 to the ServerFarm VLAN
-- Configure S1 with a Client-ID on its e0/0 interface as its MAC Address
-
-<br>
-
-Task 2.
-- Configure a DHCP pool on C2 to reserve IP 10.1.100.200/25 for S1
-- Have the DHCP pool name to be S1Farm
-- Set the default gateway as C2
-- Set S1 as a DHCP Client
-
-<br>
-
-~~~
-!@D2
-conf t
- int e0/0
-  switchport mode access
-  switchport access vlan 100
-  no shut
-  end
-~~~
-
-<br>
-
-~~~
-!@S1
-show int e0/0
-conf t
- int e0/0
-  no shut
-  ip dhcp client client-id hex #M4C4DDR3SS#
-  ip add dhcp
-  end
-~~~
-
-<br>
-
-~~~
-!@C2
-conf t
- int vlan 100
-  no shut
- ip dhcp pool S1Farm
-  host 10.1.100.200 255.255.255.128
-  default-router 10.1.100.130
-  client-identifier #M4C4DDR3SS#
-  end
-~~~
 
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### Port Security
 ~~~
@@ -1668,88 +1512,13 @@ config t
   end
 ~~~
 
-
-<br>
-<br>
-
----
-&nbsp;
-
-### 🎯 Exercise 08: [3-Tier] Set Port-Security for S1
-Task 1.
-- Configure D2 to dynamically learn only 1 MAC Address on its e0/0 interface.
-- If it learns an Invalid MAC, make sure the port goes to an errdisabled state.
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-&nbsp;
----
-&nbsp;
-
-### ANSWER
-<details>
-<summary>Show Answer</summary>
-
-~~~
-!@D2
-conf t
- int e0/0
-  switchport mode access
-  switchport port-security
-  switchport port-security mac-address sticky
-  switchport port-security maximum 1
-  switchport port-security violation shutdown
-  end
-~~~
-
-<br>
-
-~~~
-!@S1
-conf t
- int e0/0
-  mac-address 0011.1111.1111
-  end
-~~~
-
-<br>
-
-~~~
-!@D2
-show port-security address 
-show int status err-disable
-~~~
-
-</details>
  
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## Dynamic ARP Inspection & DHCP Snooping 
 ~~~
@@ -1765,8 +1534,6 @@ conf t
 show ip dhcp snooping binding
 ~~~
 
-<br>
-
 ~~~
 !@CoreBABA
 conf t
@@ -1780,10 +1547,32 @@ conf t
 
 
 <br>
+
+
+__STATIC DAI__
+~~~
+!@CoreBABA
+conf t
+ ip arp inspection VLAN 1
+ arp access-list STATIC-ARP
+  permit ip host __.__.__.__  mac __.__.__.__
+
+  exit
+ ip arp inspection filter STATIC-ARP vlan 1
+ ip arp inspection validate src-mac dst-mac ip
+ 
+ int range fa0/2-12
+  ip arp inspection trust
+  end
+~~~
+
+
+<br>
 <br>
 
 ---
 &nbsp;
+
 
 ## Managing Enterprise Communication
 ~~~
@@ -1808,11 +1597,13 @@ conf t
   end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### Analog Phones
 ~~~
@@ -1833,8 +1624,6 @@ conf t
  end
 ~~~
 
-<br>
-
 ~~~
 !@CUCM
 conf t
@@ -1848,11 +1637,13 @@ conf t
 csim start #$34T#00
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### IP Phones
 __Requirements for IP Phones to work__
@@ -1864,9 +1655,7 @@ __Requirements for IP Phones to work__
 6. &nbsp;
 7. &nbsp;
 
-
 <br>
-
 
 ~~~
 !@CUCM
@@ -1908,11 +1697,13 @@ conf t
  end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### IP Phone Features (Video/Conference Calls)
 ~~~
@@ -1931,32 +1722,13 @@ conf t
 end
 ~~~
 
-<br>
-<br>
-
----
-&nbsp;
-
-### Quality of Service
-- Markings
-- Queue
-- Tags
-
-<br>
-
-~~~
-!@CoreBABA
-conf t
- int range fa0/5,fa0/7
-  mls qos trust device cisco-phone
-  end
-~~~
 
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### Incoming Calls
 ~~~
@@ -1968,11 +1740,13 @@ conf t
  end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### Outgoing Calls
 ~~~
@@ -2050,14 +1824,17 @@ conf t
   destination-pattern 92..
   session target ipv4:10.92.100.8
   codec g711ULAW
+ no dial-peer voice #$34T# Voip
  end
 ~~~
+
 
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### Remote Access - Jumpserver
 *Can you reach CUCM from the PC?*
@@ -2067,25 +1844,17 @@ conf t
 ping 10.#$34T#.100.8
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## 🔧 Configure EDGE
 ### 🏨 Establish connectivity.
 *How do you gain access to the internet?*
-
-<br>
-
-Customer Premises
-- Provider EDGE
-- Customer Devices
-
-&nbsp;
----
-&nbsp;
 
 ~~~
 !@EDGE
@@ -2117,7 +1886,9 @@ conf t
  end
 ~~~
 
+
 <br>
+
 
 ### `Switch` vs `Routers`
 ~~~
@@ -2130,11 +1901,13 @@ conf t
   end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ## Site Connectivity
 ### Private Circuit
@@ -2153,8 +1926,6 @@ conf t
   end
 ~~~
 
-<br>
-
 ~~~
 !@CoreBABA
 conf t
@@ -2166,8 +1937,6 @@ conf t
   end
 ~~~
 
-<br>
-
 ~~~
 !@CUCM
 conf t
@@ -2177,11 +1946,13 @@ conf t
   end
 ~~~
 
+
 <br>
 <br>
 
 ---
 &nbsp;
+
 
 ### Internet Access
 ~~~
