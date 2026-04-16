@@ -1978,10 +1978,7 @@ wr
 &nbsp;
 
 
-### 🎯 Exercise 09: Describe a product
-
-Product: Marker
-*What questions will you ask to help you in describing the product?*
+### 🎯 Exercise 09:
 
 
 __4F.json__
