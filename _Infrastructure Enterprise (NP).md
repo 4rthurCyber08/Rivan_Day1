@@ -152,8 +152,6 @@ Telnet the following
 ### 🎯 Exercise 01: [3-Tier] Identify port connections between switches.
 ~~~
 !@Switches
-clear cdp counter
-clear cdp table
 show cdp neighbor
 ~~~
 
@@ -299,6 +297,30 @@ Task 1.
 - Make sure VLAN 1 is untagged on all switches.
 - Allow all VLANs
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -798,9 +820,8 @@ Step 1: Configure VTP
 !@CoreTAAS,C1,C2
 conf t
  vtp domain ccnp
- vtp password pass
  vtp mode server
- vtp version 2
+ vtp version 1
  end
 ~~~
 
@@ -808,8 +829,7 @@ conf t
 !@CoreBABA,D1,D2,A1,A2,A3,A4
 conf t
  vtp domain ccnp
- vtp password pass
- vtp version 2
+ vtp version 1
  vtp mode client
  end
 ~~~
