@@ -1938,8 +1938,8 @@ conf t
  !
  router ospf 1
   router-id #$34T#.0.0.1
-  network #$34T#.0.0.1 0.0.0.0 area #$34T#
-  network 10.#$34T#.#$34T#.0 0.0.0.255 area #$34T#
+  network #$34T#.0.0.1 0.0.0.0 area 0
+  network 10.#$34T#.#$34T#.0 0.0.0.255 area 0
   network 200.0.0.0 0.0.0.255 area 0
  int gi 0/0/0
   ip ospf network point-to-point
@@ -1951,7 +1951,7 @@ conf t
 conf t
  router ospf 1
   router-id 10.#$34T#.#$34T#.4
-   network 10.#$34T#.0.0 0.0.255.255 area #$34T#
+   network 10.#$34T#.0.0 0.0.255.255 area 0
  int gi 0/1
   ip ospf network point-to-point
   end
@@ -1962,7 +1962,7 @@ conf t
 conf t
  router ospf 1
   router-id 10.#$34T#.100.8
-  network 10.#$34T#.100.0 0.0.0.255 area #$34T#
+  network 10.#$34T#.100.0 0.0.0.255 area 0
   end
 ~~~
 
@@ -2193,7 +2193,7 @@ conf t
  no router ospf 1
  router ospf 1
   router-id #$34T#.0.0.1
-  network 10.#$34T#.#$34T#.0 0.0.0.255 area #$34T#
+  network 10.#$34T#.#$34T#.0 0.0.0.255 area 0
   default-information originate always
  router eigrp 100
   no auto-summary
