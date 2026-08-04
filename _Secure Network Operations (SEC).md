@@ -5,8 +5,8 @@
 # 👋 Welcome to Rivan
 *"There's no better teacher than experience"*
 
-
 &nbsp;
+
 ## 📋 Prove what you are doing.
  - Create a Github account: https://github.com/
 
@@ -42,51 +42,16 @@ dir
 &nbsp;
 
 
-# 🏦 Secure Enterprise Network Architecture
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<br>
-<br>
-
----
-&nbsp;
-
 ## 🧱 Hierarchical Network Design
 *What is the most important part of a network? __The Core__*
 
 <br>
 
 Most common kinds of network architectures.
- - 2-tier                 __Cisco Collapsed Campus Core__
- - 3-tier                 __Enterprise Network Design__
- - Spine-leaf             __Data Center Fabric__
+ - SOHO  
+ - 2-tier  
+ - 3-tier   
+ - Spine-leaf   
 
 <br>
 
@@ -100,9 +65,9 @@ CORE Layer (__CoreTAAS__ & __CoreBABA__) - High Speed and Availability
 Examples:
   | __Protocol__                 | __Supported Devices__    |
   | ---                          | ---                      |
-  | Etherchannel                 | Cisco Catalyst..and more |
-  | FlexStack (Master Switch)    | Cisco 2960 & 6500 Series |
-  | VSS (Single logical switch)  | NXOS 9k                  |
+  | Etherchannel                 |                          |
+  | FlexStack (Master Switch)    |                          |
+  | VSS (Single logical switch)  |                          |
   | SSO (Stateful Switchover)
   | NSF (Non-stop Forwarding)
 
@@ -115,7 +80,6 @@ Examples:
 
 
 ## 🔌 Wired and wireless network.
-*How many devices do you have right now that can connect to the internet?*
 
 <br>
 
@@ -136,8 +100,8 @@ Wifi Mesh
 
 Wifi standards | [IEEE (Institute of Electrical and Electronics Engineers)](https://standards.ieee.org/beyond-standards/the-evolution-of-wi-fi-technology-and-standards/)
 
-  - WiFi 6     
-  - WiFi 7     
+  - WiFi 6     IEEE 802.11ax
+  - WiFi 7     IEEE P802.11be
 
 
 <br>
@@ -148,7 +112,6 @@ Wifi standards | [IEEE (Institute of Electrical and Electronics Engineers)](http
 
 
 ## 🔍 Implement security solutions.
-*What is more valuable than gold? __Data__*
 
 <br>
 
@@ -158,10 +121,6 @@ Network security infrastructure
      - Windows Local Security Policy
  - Surveillance
      - IP Cameras (__CAM6__ & __CAM8__)
-
-<br>
-
-Made in US 🇺🇸 vs Made in China 🇨🇳
 
 
 <br>
@@ -189,9 +148,6 @@ Serial Cable
 
 
 # 📤 IT Service Management
-*If it is not documented, it never existed.*
-- ITSM
-- CMDB
 
 <br>
 
@@ -265,14 +221,26 @@ http://rivan.cloudsoc.com/otrs/customer.pl
 ## 📦 Operational Support System
 *How easy is it to bring home items from your company?*
 
+
+&nbsp;
+---
+&nbsp;
+
+
+### Acquisition/Procurement Process
+1. Purchasing Process
+2. Negotiation with Suppliers
+3. Purchase, Invoice, Payments, & Receipts
+
+
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
+
+### Assignment/Accounting Process
+1. A Central asset tracking system
+2. Ownership
+3. Classification
 
 
 <br>
@@ -292,6 +260,26 @@ http://rivan.cloudsoc.com/otrs/customer.pl
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+### Monitoring/Asset Tracking
+1. Inventory Every Asset
+2. Associate a ticket with the asset
+3. Enumeration
+4. Asset Tag
 
 
 <br>
@@ -303,43 +291,11 @@ http://rivan.cloudsoc.com/otrs/customer.pl
 
 ### 🎯 Exercise 02: Register Windows Server 2025 to your company's database.
 
-__1. Access CMDB__  
-
-<br>
-<br>
-
-__2. Select the appropriate Item Class__  
-
-<br>
-<br>
-
-__3. Register Windows Server 2025.__  
-  
-View System specs using __DirectX Diagnostic Tool__  
-~~~
-@WinServer [Win + R]
-dxdiag
-~~~
-
-<br>
-
-Or view __System Information__  
-~~~
-@WinServer [Win + R]
-msinfo32
-~~~
-
-<br>
-
 Identify Serial number
 ~~~powershell
 @powershell
 Get-WmiObject win32_bios | select Serialnumber
 ~~~
-
-<br>
-
-Expiration Date:
 
 
 <br>
@@ -352,6 +308,7 @@ Expiration Date:
 ## 🚀 Deploy CoreTAAS
 ### ⭐ 1. Register CoreTAAS to your company's database, including a *FAQ* to configure the devices.
 
+__BootStrap Configurations__
 ~~~
 !@CoreTaas
 conf t
@@ -371,25 +328,25 @@ conf t
  vlan 10
   name WIFIVLAN
  vlan 50
-  name CCTVVLAN
+  name VIDEOVLAN
  vlan 100
   name VOICEVLAN
  int vlan 1
   no shut
   ip add 10.#$34T#.1.2 255.255.255.0
-  desc DEFAULT-VLAN
+  desc DEFAULT-SVI
  int vlan 10
   no shut
   ip add 10.#$34T#.10.2 255.255.255.0
-  desc WIFI-VLAN
+  desc WIRELESS-SVI
  int vlan 50
   no shut
   ip add 10.#$34T#.50.2 255.255.255.0
-  desc CCTV-VLAN
+  desc VIDEO-SVI
  int vlan 100
   no shut
   ip add 10.#$34T#.100.2 255.255.255.0
-  desc VOICE-VLAN
+  desc VOICE-SVI
  end
 ~~~
 
@@ -447,16 +404,17 @@ conf t
 
 | IEEE Standards  | Power Output |
 | ---             |     ---      |
-| 802.    (PoE)   |              |
-| 802.    (PoE+)  |              |
-| 802.    (PoE++) |              |
+| 802.3af (PoE)   |              |
+| 802.3at (PoE+)  |              |
+| 802.3bt (PoE++) |              |
 
 <br>
 
-> __CMDB__  
-> Name: CoreBABA  
-> Description: 1st Job of a Switch - PoE  
->   Switches need to supply the right amount of power depending on the needs of end devices.  
+Which device consumes the most power? __SPI - `show power inline`__
+~~~
+!@CoreBABA
+show power inline
+~~~
 
 
 <br>
@@ -467,23 +425,10 @@ conf t
 
 
 ### ⚙️ 2. SVI (Switch Virtual Interface)
-*Why segment network traffic? __WireShark__*
-
-<br>
-
-> __FAQ (Knowledge Database)__   
-> Title: 2nd Job of a Switch - SVI  
-> Symptom: Lack of IP addresses.  
-> Problem: Prevents remote management and L3 operations   
-> Solution:   
-
-
-<br>
-
 ~~~
 !@CoreBABA
 conf t
- hostname coreBaba-#$34T#
+ hostname CoreBABA-#$34T#
  enable secret pass
  service password-encryption
  no logging console
@@ -496,36 +441,23 @@ conf t
   password pass
   login
   exec-timeout 0 0
- int gi 0/1
-  no shut
-  no switchport
-  ip add 10.#$34T#.#$34T#.4 255.255.255.0
  int vlan 1
   no shut
   ip add 10.#$34T#.1.4 255.255.255.0
-  desc DEFAULT-VLAN
+  desc DEFAULT-SVI
  int vlan 10
   no shut
   ip add 10.#$34T#.10.4 255.255.255.0
-  desc WIFI-VLAN
+  desc WIRELESS-SVI
  int vlan 50
   no shut
   ip add 10.#$34T#.50.4 255.255.255.0
-  desc CCTV-VLAN
+  desc VIDEO-SVI
  int vlan 100
   no shut
   ip add 10.#$34T#.100.4 255.255.255.0
-  desc VOICE-VLAN
+  desc VOICE-SVI
  end
-~~~
-
-<br>
-
-Verify Connectivity: 
-
-~~~
-!@cmd
-ping 10.#$34T#.1.4
 ~~~
 
 
@@ -541,39 +473,13 @@ ping 10.#$34T#.1.4
 2. __I__
 3. __A__
 
+
 &nbsp;
 ---
 &nbsp;
 
+
 ### 🔐 Confidentiality
-
-~~~
-!@cmd
-ping 10.#$34T#.1.4
-ping 10.#$34T#.1.2
-~~~
-
-<br>
-
-~~~
-!@cmd
-nmap -sP 10.3.3.0/24
-nmap -O 10.3.3.0/24
-~~~
-
-<br>
-
-~~~
-!@cmd
-nmap -v 10.#$34T#.1.2
-~~~
-
-<br>
-
-Is port __23/Telnet__ open?  
-Is port __445/Microsoft-DS & 139/ServerMessageBlock__ open?  
-
-<br>
 
 *How to access port 445 because you don't have a Firewall!*
 ~~~
@@ -603,22 +509,6 @@ conf t
   end
 ~~~
 
-<br>
-
-__Access Wireshark__
-
-<br>
-
-| Attempt    | Answer                          |
-| ---        | ---                             |
-| 1:Username | What did you eat last night?    | 
-| 2:Password | What is your favorite dessert?  |
-| ###        | ###                             |
-| 1:Username | What's the name of your school? |
-| 2:Password | What's your course in college?  |
-| ###        | ###                             |
-| 1:Username | admin                           |
-| 2:Password | pass                            |
 
 <br>
 
@@ -629,15 +519,26 @@ __Implement Secure Protocols: SSH__
 
 <br>
 
+*__Confidentiality__ is the security concept that ensures data is protected from unauthorized access or __Disclosure__.*
+
+
+<br>
+
 ~~~
 !@CoreTAAS
 conf t
+ username admin privilege 15 secret pass
+ username _____ privilege 15 secret pass
+ !
  ip domain name sec.com
  crypto key generate rsa
  2048
  ip ssh version 2
+ !
  line vty 0 14
   transport input all
+  login local
+  exec-timeout 0 0
   end
 ~~~
 
@@ -658,7 +559,7 @@ conf t
   commands exec include show ip interface brief
   commands exec include show interface *
   commands configure include interface
-  commands configure include interface GigabitEthernet1 
+  commands configure include interface GigabitEthernet0/1 
   commands interface include shutdown
   commands interface include no shutdown
   exit
@@ -666,11 +567,6 @@ conf t
  username tier2 privilege 15 secret pass
  end
 ~~~
-
-
-<br>
-
-*__Confidentiality__ is the security concept that ensures data is protected from unauthorized access or __Disclosure__.*
 
 
 <br>
@@ -683,7 +579,7 @@ conf t
 ### ✉️ Integrity
 ~~~
 !@cmd
-certutil -hashfile SERVER_EVAL_x64FRE_en-us.iso md5
+certutil -hashfile            md5
 ~~~
 
 
@@ -697,6 +593,16 @@ certutil -hashfile SERVER_EVAL_x64FRE_en-us.iso md5
 ### 🔀 Availability
 *Avoid a single point of failure*
 
+1. Load Balancing
+2. Failover
+3. Backup
+4. Rate Limiting / DDoS Protection
+5. CDN (Content Delivery Networks)
+6. RAID Storage
+
+
+<br>
+
 
 Execute a persistent ping
 ~~~
@@ -704,19 +610,58 @@ Execute a persistent ping
 ping 10.#$34T#.1.2 -t
 ~~~
 
+<br>
+
 ~~~
-!@CoreBABA & CoreTAAS
+!@CoreTAAS, CoreBABA
 conf t
- int range fa0/10-12
+ int range fa0/8-10
   channel-group 1 mode active
-  exit
+  channel-protocol lacp
  int po1
   switchport trunk encaps dot1q
   switchport mode trunk
   switchport trunk allowed vlan all
   switchport trunk native vlan 1
   end
+show int trunk
 show int po1 | inc BW
+!
+~~~
+
+
+<br>
+
+
+__L3 Etherchannel__
+~~~
+!@CoreTAAS
+conf t
+ int range fa0/11-12
+  no switchport
+  channel-group 10 mode passive
+  channel-protocol lacp
+ int po10
+  no switchport
+  no shut
+  ip add 10.#$34T#.#$34T#.2  255.255.255.252
+  end
+show ip int br
+~~~
+
+~~~
+!@CoreBABA
+conf t
+ int range fa0/11-12
+  no switchport
+  channel-group 10 mode passive
+  channel-protocol lacp
+ int po10
+  no switchport
+  no shut
+  ip add 10.#$34T#.#$34T#.6  255.255.255.252
+  end
+show ip int br
 ~~~
 
 
@@ -732,11 +677,11 @@ show int po1 | inc BW
 
 | Network     | DHCP Device |
 | ---         |     ---     |
-| SOHO        |             |
+| SOHO        | Router      |
 |             |             |
 | Enterprise  |             |
-| Medium Biz  |             |
-| Large Biz   |             |
+| Medium Biz  | Firewall    |
+| Large Biz   | Core Switch |
 
 
 <br>
@@ -744,6 +689,25 @@ show int po1 | inc BW
 
 ---
 &nbsp;
+
+
+### 🔴 RED Team
+Hack your LAN to better protect it.
+1. Run __\_Pentest__
+2. Login to the VM
+> Username: admin  
+> Password: pass  
+
+3. Run yersinia
+
+~~~
+@_Pentest
+sudo yersinia -G
+~~~
+
+
+<br>
+<br>
 
 
 🔴 __Creating a Rogue DHCP Server:__
@@ -770,16 +734,6 @@ nmcli connection up TUNAYNALAN
 <br>
 
 
-> __FAQ (Knowledge Database)__   
-> Title: 3rd Job of a Switch - DHCP  
-> Symptom: Lack of IP addresses.  
-> Problem: If End devices do not have IP addresses they will not be able to communicate across the network.
-> Solution:
-
-
-<br>
-
-
 ~~~
 !@CoreTAAS
 conf t
@@ -798,10 +752,10 @@ conf t
   domain-name WIFIDATA.COM
   dns-server 10.#$34T#.1.10
   option 43 ip 10.#$34T#.10.7
- ip dhcp pool POOLCCTV
+ ip dhcp pool POOLVIDEO
   network 10.#$34T#.50.0 255.255.255.0
   default-router 10.#$34T#.50.4
-  domain-name CCTVDATA.COM
+  domain-name VIDEODATA.COM
   dns-server 10.#$34T#.1.10
  ip dhcp pool POOLVOICE
   network 10.#$34T#.100.0 255.255.255.0
@@ -817,13 +771,14 @@ conf t
 
 
 🔴 __DHCP Starvation Attack:__
+*Sending DHCP DISCOVER Packet*
 
 | States      | Type      |
 | ---         | ---       |
-| Discover    |           |
-| Offer       |           |
-| Request     |           |
-| Acknowledge |           |
+| Discover    | Broadcast |
+| Offer       | Unicast   |
+| Request     | Broadcast |
+| Acknowledge | Unicast   |
 
 
 <br>
@@ -852,30 +807,18 @@ show vlan brief
 
 
 Just because there's an SVI doesn't mean there's a VLAN.
-
-<br>
-
-> __FAQ (Knowledge Database)__   
-> Title: 4th Job of a Switch - VLAN Creation & VLAN Management   
-> Symptom: Network devices share the same broadcast domain.    
-> Problem: Lack of traffic segmentation on L2 can lead to a broadcast storm.  
-> Solution:  
-
-
-<br>
-
 ~~~
 !@CoreTAAS
 conf t
  vtp mode server
  vtp domain SEC
- vtp version 2
+ vtp version 1
  vlan 10
-  name WIFIVLAN
+  name WIRELESS-VLAN
  vlan 50
-  name CCTVVLAN
+  name VIDEO-VLAN
  vlan 100
-  name VOICEVLAN
+  name VOICE-VLAN
   end
 ~~~
 
@@ -884,7 +827,7 @@ conf t
 conf t
  vtp mode server
  vtp domain SEC
- vtp version 2
+ vtp version 1
  end
 ~~~
 
@@ -895,45 +838,55 @@ conf t
 
 
 Place Switchports in their correct VLAN.
+~~~
+!@CoreTAAS
+conf t
+ int fa0/1
+  switchport mode access
+  switchport access vlan 10
+ int fa0/2
+  switchport mode access
+  switchport access vlan 10
+ int fa0/3
+  switchport mode access
+  switchport access vlan 50
+ int fa0/4
+  switchport mode access
+  switchport access vlan 50
+ int fa0/5
+  switchport mode access
+  switchport access vlan 1
+  switchport voice vlan 100
+  mls qos trust device cisco-phone
+  end
+show vlan brief
+~~~
 
 ~~~
 !@CoreBABA
 conf t
- int fa 0/2
+ int fa0/1
+  switchport mode access
+  switchport access vlan 1
+ int fa0/2
   switchport mode access
   switchport access vlan 10
- int fa 0/4
+ int fa0/4
   switchport mode access
-  switchport access vlan 10
+  switchport access vlan 50
+ int fa0/5
+  switchport mode access
+  switchport access vlan 1
+  switchport voice vlan 100
+  mls qos trust device cisco-phone
  int fa0/6
   switchport mode access
-  switchport access vlan 50
- int fa0/8
-  switchport mode access
-  switchport access vlan 50
- int fa 0/3
-  switchport mode access
   switchport access vlan 100
- int fa 0/5
-  switchport mode access
-  switchport voice vlan 100
-  switchport access vlan 1
- int fa 0/7
-  switchport mode access
-  switchport voice vlan 100
-  switchport access vlan 1
- end
+  end
+show vlan brief
 ~~~
 
 
-<br>
-
-
-🔴 __VTP Revision Number Attack:__
-*What happens when a device is connected to a VLAN that does not exist? __Orphan-ports__*
-
-<br>
-<br>
 <br>
 <br>
 
@@ -942,32 +895,9 @@ conf t
 
 
 ## ⚙️ 5. MAC Learning & MAC Reservation
-*What is in a MAC Address?*
-
-<br>
-
-~~~
-!@cmd
-nmap -sP -sn 192.168.1.0/24
-~~~
-
-<br>
-
-How switches forward data? __Frame Forwarding__
-
-~~~
-!@Windows
-arp /a
-
-!@Linux
-arp -a
-~~~
-
-<br>
-
 How to view the MAC addresses learned by the Switch? __SMAC - `show mac address-table`__
 ~~~
-!@CoreBABA
+!@CoreTAAS,CoreBABA
 show mac address-table
 ~~~
 
@@ -978,19 +908,6 @@ show mac address-table
 | Camera fa0/6   | #camera6macadd#  |
 | Camera fa0/8   | #camera8macadd#  |
 
-<br>
-
-Assign a specific IP address to a device.
-
-
-<br>
-
-
-> __FAQ (Knowledge Database)__   
-> Title: 5th Job of a Switch - MAC Learning & MAC Reservation   
-> Symptom: Cameras have dynamic IP addresses
-> Problem: Certain endpoints must have a static IP address
-> Solution:  
 
 <br>
 
@@ -1029,7 +946,376 @@ Review the jobs of a switch:
  4. &nbsp;
  5. &nbsp;
 
- 
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+# IT Service Management Components
+
+<br>
+
+## 1.0 Tickets
+
+### ALERT MANAGEMENT
+
+1. Security Alert - Created automatically by security tools (SIEM, EDR, IDS/IPS, email security, etc.) when suspicious activity is detected. Requires triage to determine whether the alert is a false positive or a real threat.
+
+<br>
+<br>
+
+2. False Positive Review - Documents alerts determined to be benign to improve future detections.
+
+
+&nbsp;
+---
+&nbsp;
+
+
+### INCIDENT RESPONSE
+
+1. Security Incident - Confirmed security event requiring response and remediation.
+
+
+<br>
+<br>
+
+
+2. Malware - Investigation of malware or ransomware infections.
+
+
+<br>
+<br>
+
+
+3. Phishing - Investigation of phishing emails or malicious websites.
+
+
+<br>
+<br>
+
+
+4. Digital Forensics - Collection and preservation of digital evidence after a security incident.
+
+
+&nbsp;
+---
+&nbsp;
+
+
+### INVESTIGATION & THREAT HUNTING
+
+1. Investigation - Detailed analysis of suspicious activity that has not yet been confirmed as malicious.
+
+
+<br>
+<br>
+
+
+2. Threat Hunting - Proactive search for hidden threats based on intelligence or hypotheses.
+
+
+<br>
+<br>
+
+
+3. Threat Intelligence - Management of threat intelligence and IOC information.
+
+
+&nbsp;
+---
+&nbsp;
+
+
+### VULNERABILITY MANAGEMENT
+
+1. Vulnerability - Tracks discovered vulnerabilities through remediation.
+
+
+<br>
+<br>
+
+
+2. Risk Assessment - Evaluates security risks for systems, projects, or business changes.
+
+
+&nbsp;
+---
+&nbsp;
+
+
+### IDENTITY & ACCESS MANAGEMENT
+
+1. Access Request - User requests for new accounts, VPN access, privileged access, or permission changes.
+
+
+<br>
+<br>
+
+
+2. Access Review - Periodic audit of user and administrator permissions.
+
+
+&nbsp;
+---
+&nbsp;
+
+
+### GOVERNANCE, RISK, AND COMPLIANCE
+
+1. Compliance - Activities supporting audits, regulatory requirements, and policy compliance.
+
+
+<br>
+<br>
+
+
+2. Policy Exception - Request to temporarily deviate from an established security policy.
+
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+## 2.0 Queues
+
+<br>
+
+### 1. [SOC] Tier 1 - First-line monitoring and triage.  
+
+  > Sub Queues
+  > - Alert Triage - Monitor dashboards, acknowledge alerts, create tickets.
+  > - Monitoring - Identify false positives, classify alerts, gather initial evidence.
+  > - Threat Validation - Correlate basic logs, enrich alerts with threat intelligence.
+  > - Escalation/T2 Review - Document findings and transfer tickets to Tier 2.
+
+
+&nbsp;
+---
+&nbsp;
+
+
+### 2. [SOC] Tier 2 - Incident Responder (Investigation & Escalation)  
+
+  > Sub Queues
+  > - Incident Investigation - Detailed investigation of escalated alerts.
+  > - Incident Response - Contain compromised systems, isolate endpoints, coordinate recovery.
+  > - Malware and Phishing Analysis - Analyze malicious files, review persistence mechanisms, identify IOCs, phishing emails, URLs, attachments, remove malicious emails.
+  > - Endpoint and Network Investigation - Review processes, registry changes, persistence, EDR telemetry. Analyze NetFlow, firewall logs, IDS alerts, VPN activity.
+  > - Account Compromise - Investigate suspicious logins, disable compromised accounts, enforce password resets.
+
+
+&nbsp;
+---
+&nbsp;
+
+
+### 3. [SOC] Tier 3 - SOC Manager, CISO, Threat Intelligence Lead  
+
+  > Sub Queues
+  > - Threat Hunting - Hunt for attacker behaviors and unknown compromises.
+  > - Digital Forensics - Acquire and analyze disk images, memory captures, maintain evidence.
+  > - Security Engineering - Configure SIEM, SOAR, EDR, log collectors, automation.
+  > - SOAR (Security Orchestration and Automation) - Develop playbooks, automate repetitive analyst tasks.
+  > - Advance Malware Analysis - Reverse engineer malware, identify capabilities, produce detection signatures.
+
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+## Services
+
+<br>
+
+### 1. [SOC] Network Security  
+
+  > Sub Queues
+  > - Firewall - Investigate blocked connections, review firewall logs, implement approved firewall rule changes, analyze suspicious traffic.
+  > - IDS/IPS - Investigate IDS alerts, tune signatures, validate exploits, block malicious traffic.
+  > - VPN - Investigate abnormal VPN logins, validate MFA, review geolocation anomalies, disable compromised accounts.
+  > - DNS Security - Investigate DNS tunneling, block malicious domains, analyze DNS queries.
+  > - Web Proxy - Investigate web access violations, block malicious URLs, review proxy logs.
+  > - Network Access Control (NAC) - Services that protect and monitor the organization's network.
+
+
+&nbsp;
+---
+&nbsp;
+
+
+### 2. [SOC] Endpoint Security  
+
+  > Sub Queues
+  > - Endpoint Detection and Response - Investigate endpoint alerts, isolate hosts, collect forensic artifacts, remove malware.
+  > - Antivirus/Anti-Malware - Review malware detections, update signatures, validate quarantined files.
+  > - Endpoint Management - Verify security policies, investigate missing agents, enforce encryption.
+  > - Disk Encryption - Verify BitLocker/FileVault compliance, recover encryption keys, investigate encryption failures.
+
+
+&nbsp;
+---
+&nbsp;
+
+
+### 3. [SOC] Identity and Access  
+
+  > Sub Queues
+  > - Identity and Access Management - Investigate authentication failures, create or disable accounts, review permissions.
+  > - Active Directory Services - Investigate account lockouts, review group memberships, disable compromised accounts.
+  > - Multi-Factor Authentication - Reset MFA devices, investigate MFA failures, enroll new users.
+  > - Privileged Access Management - Issue administrator access, review privileged sessions, rotate privileged credentials.
+
+
+&nbsp;
+---
+&nbsp;
+
+
+### 4. [SOC] Security Monitoring  
+
+  > Sub Queues
+  > - SIEM - Investigate correlation alerts, create dashboards, tune rules, validate events.
+  > - SOAR - Develop automation playbooks, validate automated responses, optimize workflows.
+  > - Log Management - Verify log ingestion, troubleshoot missing logs, maintain log retention.
+
+
+&nbsp;
+---
+&nbsp;
+
+
+### 5. [SOC] Email Security  
+
+  > Sub Queues
+  > - Email Protection - Review spoofing attempts, analyze email headers, block malicious senders.
+  > - Email Security Gateway - Investigate phishing campaigns, quarantine malicious emails, update detection rules.
+
+
+&nbsp;
+---
+&nbsp;
+
+
+### 6. [SOC] Application Security  
+
+  > Sub Queues
+  > - Web Application Firewall (WAF) - Investigate SQL injection and XSS attempts, tune WAF policies, review attack logs.
+  > - Application Security - Investigate authentication issues, review application logs, coordinate with developers.
+  > - API Security - Investigate abnormal API usage, review authentication failures, block abusive clients.
+
+
+&nbsp;
+---
+&nbsp;
+
+
+### 7. [SOC] Data Protection Services  
+
+  > Sub Queues
+  > - Data Loss Prevention - Investigate policy violations, block sensitive file transfers, review exfiltration attempts.
+  > - File Integrity Monitoring - Review file modifications, validate system changes, investigate tampering.
+  > - Backup and Recovery - Verify backup integrity, investigate backup failures, coordinate secure recovery after incidents.
+
+
+&nbsp;
+---
+&nbsp;
+
+
+### 8. [SOC] Vulnerability and Compliance Services  
+
+  > Sub Queues
+  > - Vulnerability Management - Review scan results, prioritize remediation, verify patch deployment.
+  > - Patch Management - Validate patch compliance, investigate failed updates, schedule remediation.
+  > - Compliance Monitoring - Generate audit reports, validate security controls, monitor policy adherence.
+
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+## Service Level Agreements  
+
+<br>
+
+### 1. Critical Incident SLA  
+
+> Active cyberattack or business-critical security incident requiring immediate response.
+>
+> <br>
+> 
+> Immediately acknowledge the incident, contain affected systems, isolate compromised hosts, coordinate with Incident Response, notify management, restore services, and conduct post-incident review.
+
+
+&nbsp;
+---
+&nbsp;
+
+
+### 2. High Priority SLA    
+
+> Confirmed or highly suspected security incident requiring urgent investigation.
+>
+> <br>
+>
+> Investigate logs, validate indicators of compromise (IOCs), isolate affected endpoints if needed, block malicious IPs/domains, coordinate with IT for remediation.
+
+
+&nbsp;
+---
+&nbsp;
+
+
+### 3. Medium Priority SLA  
+
+> Security event requiring analysis but not considered business critical.
+>
+> <br>
+>
+> Review logs, correlate SIEM events, validate alerts, request additional information, recommend remediation if necessary.
+
+
+&nbsp;
+---
+&nbsp;
+
+
+### 4. Low Priority SLA  
+
+> Minor security events or scheduled work that do not require urgent handling. >
+>
+> <br>
+> 
+> Review tickets during business hours, perform routine investigations, verify changes, document findings.
+
+
+&nbsp;
+---
+&nbsp;
+
+
+### 5. Informational SLA  
+
+> Non-urgent requests with no immediate security impact.
+>
+> <br>
+> 
+> Update documentation, close informational tickets, provide reports, archive evidence.
+
+
 <br>
 <br>
 
@@ -1105,10 +1391,6 @@ IT Support Team
 
 ### STEP 2 - User checks the logs, then discover that Certain Switches have unusually high traffic.
 
-
-<br>
-
-
 __Change Owner__
 - Subject: Network Issue T2 Escalation
 - Text: 
@@ -1173,16 +1455,6 @@ Switches are currently lacking proper security implementations to prevent L2 att
 <br>
 
 
-- Justification:
-~~~
-CPU utilization for five seconds: 99%/0%; one minute: 6%; five minutes: 6%
- 272           0           2          0  0.00%  0.00%  0.00%   0 Routing Topology
-~~~
-
-
-<br>
-
-
 - Category: 4 High
 - Impact: 4 High
 - Priority: 4 High
@@ -1202,22 +1474,12 @@ __WorkOrder [REQUEST]__
 Users reported slow connectivity. Investigation identified high CPU utilization on Cisco access switch due to MAC address table flooding. The switch is vulnerable to MAC flooding attack.
 Requesting change approval to implement port security configuration on affected access ports.
 
-
 Reason for Change:
-  Mitigate network traffic congestion.
-  Prevent recurrence of MAC flooding attack.
-  Improve switch stability.
-  Enhance Layer 2 security posture.
-
-
 Proposed Solution:
-  Enable port security.
-  Limit MAC addresses per port.
-  Enable violation restrict/shutdown mode.
-  Enable sticky MAC where applicable.
+
 ~~~
 
-
+ 
 <br>
 <br>
 
@@ -1226,6 +1488,21 @@ Proposed Solution:
 
 
 ### STEP 4 - Create a Work Order for [Impact Analysis] & Plan Assessment
+
+__ITIL-Based Impact Analysis Framework__  
+- Identify the Scope of the Change  
+- Identify Stakeholders  
+- Assess Impact Levels  
+- Identify Risks   
+- Analyze Dependencies  
+- Document Findings  
+- Decision Support  
+
+
+&nbsp;
+---
+&nbsp;
+
 
 __WorkOrder [IMPACT ANALYSIS]__  
 - Title: Technical & Risk Assestment / Action Plan  
@@ -1257,16 +1534,6 @@ SW-ACC-02
 Affected Users:
 Office Floor 2 (~45 users)
 No impact to core or WAN
-
-
-Backout Plan
-!@Switch
-conf t
- int range fa0/1-12
-  no switchport port-security
-  shut
-  no shut
-  end
 ~~~
 
 
@@ -1324,15 +1591,15 @@ copy run ftp:
 
 Implementation:
 PORT SECURITY
-!@CoreBABA
+!@CoreTAAS,CoreBABA
 conf t
-interface range fa0/6,fa0/8
- switchport mode access
- switchport port-security
- switchport port-security maximum 1
- switchport port-security violation restrict
- switchport port-security mac-address sticky
-end
+ int fa0/4
+  switchport mode access
+  switchport port-security
+  switchport port-security maximum 1
+  switchport port-security violation shutdown
+  switchport port-security mac-address sticky
+  end
 
 DHCP SNOOPING
 !@CoreBABA
@@ -1342,7 +1609,6 @@ conf t
  !
  int po1
   ip dhcp snooping trust
-  exit
  int fa0/1
   no ip dhcp snooping trust
   exit
@@ -1361,22 +1627,20 @@ DAI Dynamic Arp Inspection
 conf t
  ip arp inspection vlan 1,10,50,100
  !
- int po1
+ int range fa0/2-6,po1
   ip arp inspection trust
-  exit
- !
- arp access-list PC-HOST
-  permit ip host 10.#$34T#.1.10 mac host ___.___.___.___
-  exit
- ip arp inspection filter PC-HOST vlan 1
- !
  int fa0/1
   no ip arp inspection trust
   end
 show ip arp inspection
 show ip arp inspection statistics
-
-
+ 
+ 
+Post Implementation
+- CPU utilization normalized
+- MAC address table state
+- No unexpected port shutdowns
+- Users confirmed stable connectivity [Ticket Reply]
 ~~~
 
 
@@ -1405,12 +1669,6 @@ Observations
 - No further MAC flooding detected
 - No user complaints
 - Port violations logged correctly
-
-Lessons Learned
-- Port security was not enabled by default
-- Access switches lacked L2 security hardening baseline
-- Need standard switch hardening template
-
 ~~~
 
 
@@ -1435,6 +1693,8 @@ __A Review on the 5 ITSM Change Process__
 
 
 <br>
+<br>
+
 
 2. __IMPACT ANALYSIS__
 
@@ -1446,6 +1706,8 @@ __A Review on the 5 ITSM Change Process__
 
 
 <br>
+<br>
+
 
 3. __APPROVAL__
 
@@ -1457,6 +1719,8 @@ __A Review on the 5 ITSM Change Process__
 
 
 <br>
+<br>
+
 
 4. __IMPLEMENTATION__
 
@@ -1468,6 +1732,8 @@ __A Review on the 5 ITSM Change Process__
 
 
 <br>
+<br>
+
 
 5. __REVIEW/REPORT__
 
@@ -1487,38 +1753,15 @@ __A Review on the 5 ITSM Change Process__
 
 ### STEP 9 - Report on every single Work Order to Change states
 
-1. __REQUEST__
-
-<br>
-
-Terms:
-  __RFC (Request for Change)__   
-  __Change Record__    
-  __Change Initiator__   
-  __Business Justification__    
-  __Change Category__    
-  __Priority__   
-
-
-&nbsp;
----
-&nbsp;
-
-
-2. __IMPACT ANALYSIS__
-
-<br>
+### 1. __REQUEST__
 
 Terms:  
-  __Impact__  
-  __Risk__  
-  __Risk Matrix__  
-  __CI (Configuration Item)__  
-  __Dependency Mapping__  
-  __Rollback Plan__  
-  __Mitigation Plan__  
-
-<br>
+  - __RFC (Request for Change)__ : Formal proposal  
+  - __Change Record__            : The official tracking object  
+  - __Change Initiator__         : Person submitting the RFC  
+  - __Business Justification__   : Why this change is needed  
+  - __Change Category__          : Infrastructure / Application / Network / Security  
+  - __Priority__                 : Based on Impact + Urgency  
 
 
 &nbsp;
@@ -1526,17 +1769,15 @@ Terms:
 &nbsp;
 
 
-3. __APPROVAL/DENIAL__
-
-<br>
-
+### 2. __IMPACT ANALYSIS__
 Terms:  
-  __CAB (Change Advisory Board)__   
-  __ECAB__   
-  __Change Manager__   
-  __Approval Workflow__   
-  __Segregation of Duties__    
-  __Compliance & Audit Trail__    
+  - __Impact__                  : Business/service effect if change fails
+  - __Risk__                    : Likelihood × Impact
+  - __Risk Matrix__             : Used to score change
+  - __CI (Configuration Item)__ : Component in CMDB
+  - __Dependency Mapping__      : Relationship between systems
+  - __Rollback Plan__           : Recovery procedure
+  - __Mitigation Plan__         : Risk reduction actions
 
 
 &nbsp;
@@ -1544,26 +1785,39 @@ Terms:
 &nbsp;
 
 
-4. IMPLEMENTATION
+### 3. __APPROVAL/DENIAL__
+Terms:  
+  - __CAB (Change Advisory Board)__ : Group reviewing changes  
+  - __ECAB__                        : Emergency CAB  
+  - __Change Manager__  
+  - __Approval Workflow__  
+  - __Segregation of Duties__  
+  - __Compliance & Audit Trail__  
 
-<br>
+
+&nbsp;
+---
+&nbsp;
+
+
+### 4. IMPLEMENTATION
 
 Terms:
-  __Change Window__
-  __Maintenance Window__
-  __Work Orders__
-  __Deployment Plan__
-  __Backout Plan__
-  __Release Management__
-  __Technical Validation__
+  - __Change Window__
+  - __Maintenance Window__
+  - __Work Orders__
+  - __Deployment Plan__
+  - __Backout Plan__
+  - __Release Management__
+  - __Technical Validation__
 
 <br>
 
 Control Mechanisms  
-  - &nbsp;
-  - &nbsp;
-  - &nbsp;
-  - &nbsp;
+  - Real-time monitoring  
+  - Peer review  
+  - Go/No-Go decision checkpoint  
+  - Change freeze policies  
   
 
 &nbsp;
@@ -1571,84 +1825,15 @@ Control Mechanisms
 &nbsp;
 
   
-5. REVIEW/REPORT
-
-<br>
+### 5. REVIEW/REPORT
 
 Terms:  
-  __PIR (Post Implementation Review)__  
-  __RCA (Root Cause Analysis)__   
-  __Lessons Learned__  
-  __KPI Review__  
-  __Change Success Rate__  
-  __Continuous Improvement__  
-
-
-<br>
-<br>
-
----
-&nbsp;
-
-
-## 🔒 Secure Layer 2 Network
-*Why should you buy an expensive switch?*
-
-1. MAC Address Learning
-2. MAC Address Filtering
-3. MAC Address Forwarding
-4. Layer 2 Loop Avoidance
-
-
-&nbsp;
----
-&nbsp;
-
-
-### PortSec
-*Ensure your devices don't get swapped.*
-Guard the switchports so that it can't be replaced by hacking devices.
-
-<br>
-
-~~~
-!@BABA
-config t
- int fa0/6
-  switchport mode access
-  switchport port-security
-  switchport port-security mac-address Sticky
-  switchport port-security maximum 1
-  switchport port-security violation shutdown
- int fa0/8
-  switchport mode access
-  switchport port-security
-  switchport port-security mac-address Sticky
-  switchport port-security maximum 1
-  switchport port-security violation shutdown
-  end
-show port-security address
-show int status err-disable
-~~~
-
-<br>
-
-Make ports work again.
-
-~~~
-@CoreBABA
-config t
- int fa0/6
-  no switchport port-security
-  shut
-  no shut
- int fa0/8
-  no switchport port-security
-  shut
-  no shut
-  end
-show int status err-disable
-~~~
+  - __PIR (Post Implementation Review)__  
+  - __RCA (Root Cause Analysis)__   
+  - __Lessons Learned__  
+  - __KPI (Key Performance Indicator)__  
+  - __Change Success Rate__  
+  - __Continuous Improvement__  
 
 
 <br>
@@ -1663,9 +1848,9 @@ show int status err-disable
 <summary>Show Script</summary>
 	
 ~~~
-!@coreBaba
+!@CoreBaba
 conf t
- hostname coreBaba-#$34T#
+ hostname CSW-BABA-#$34T#
  enable secret pass
  service password-encryption
  no logging console
@@ -1678,62 +1863,74 @@ conf t
   password pass
   login
   exec-timeout 0 0
- int gi 0/1
-  no shut
-  no switchport
-  ip add 10.#$34T#.#$34T#.4 255.255.255.0
  int vlan 1
   no shut
   ip add 10.#$34T#.1.4 255.255.255.0
-  desc VLANMGMTDATA
+  desc DEFAULT-SVI
  int vlan 10
   no shut
   ip add 10.#$34T#.10.4 255.255.255.0
-  desc VLANMGMTWIFI
+  desc WIRELESS-SVI
  int vlan 50
   no shut
   ip add 10.#$34T#.50.4 255.255.255.0
-  desc VLANMGMTCCTV
+  desc VIDEO-SVI
  int vlan 100
   no shut
   ip add 10.#$34T#.100.4 255.255.255.0
-  desc VLANMGMTVOICE
+  desc VOICE-SVI
  end
 
 !@switchport
 conf t
- vlan 1
-  name MGMTVLAN
  vlan 10
-  name WIFIVLAN
+  name WIRELESS-VLAN
  vlan 50
-  name CCTVVLAN
+  name VIDEO-VLAN
  vlan 100
-  name VOICEVLAN
- int fa 0/2
+  name VOICE-VLAN
+ !
+ int fa0/1
+  switchport mode access
+  switchport access vlan 1
+ int fa0/2
   switchport mode access
   switchport access vlan 10
- int fa 0/4
-  switchport mode access
-  switchport access vlan 10
- int fa 0/6
+ int fa0/3
   switchport mode access
   switchport access vlan 50
- int fa 0/8
+ int fa0/4
   switchport mode access
   switchport access vlan 50
- int fa 0/3
+ int fa0/5
+  switchport mode access
+  switchport access vlan 1
+  switchport voice vlan 100
+  mls qos trust device cisco-phone
+ int fa0/6
   switchport mode access
   switchport access vlan 100
- int fa 0/5
-  switchport mode access
-  switchport voice vlan 100
-  switchport access vlan 1
- int fa 0/7
-  switchport mode access
-  switchport voice vlan 100
-  switchport access vlan 1
- end
+  end
+
+!@trunking and etherchannel
+conf t
+ int range fa0/8-10
+  channel-group 1 mode active
+  channel-protocol lacp
+ int po1
+  switchport trunk encaps dot1q
+  switchport mode trunk
+  switchport trunk allowed vlan all
+  switchport trunk native vlan 1
+ int range fa0/11-12
+  no switchport
+  channel-group 10 mode passive
+  channel-protocol lacp
+ int po10
+  no switchport
+  no shut
+  ip add 10.#$34T#.#$34T#.6  255.255.255.252
+  end
 
 !@camera
 conf t
@@ -1778,13 +1975,6 @@ Cisco Unified Call Manager | [Unified Communications and Collaboration.](https:/
   - POTS (__Analog__)
   - VOIP (__ePhone__)
 
-
-<br>
-
-> __CMDB__  
-> Name: CUCM  
-> Description:  Establish a Cybercrime hotline via Call Control System
-
 <br>
 
 | PBX (Private Branch Exchange) | PSTN (Public Switched Telephone Network)  |
@@ -1801,22 +1991,14 @@ Cisco Unified Call Manager | [Unified Communications and Collaboration.](https:/
 
 
 ### Requirements to make IP Phones Operational
-1. &nbsp;
-2. &nbsp;
-3. &nbsp;
-4. &nbsp;
-5. &nbsp;
-6. &nbsp;
-7. &nbsp;
+7.
+6.
+5.
+4.
+3. I__  _____       Did your phone get the correct IP?
+2. M__  _____
+1. P__
 
-
-<br>
-
-> __FAQ (Knowledge Database)__   
-> Title: Bootstrap Configurations for CUCM   
-> Symptom: Newly Procured  
-> Problem: No Configurations  
-> Solution:  
 
 <br>
 
@@ -1854,17 +2036,7 @@ conf t
 
 <br>
 
-## ⚙️ 1. Analog Phones (RJ11)
-*Why do companies still use Analog phones?*
-
-<br>
-
-> __FAQ (Knowledge Database)__   
-> Title: 1st Job of a Call Manager - Analog Phones   
-> Symptom: Busy dial when pressing any button  
-> Problem: No DN Assigned  
-> Solution:  
-
+### ⚙️ 1. Analog Phones (RJ11)
 ~~~
 !@CUCM
 conf t
@@ -1894,21 +2066,6 @@ csim start #$34T#00
 ~~~
 
 
-&nbsp;
----
-&nbsp;
-
-
-Modify the tone of the phone.
-~~~
-!@CUCM
-conf t
- voice-port 0/0/0
-  cptone dutch
-  end
-~~~
-
-
 <br>
 <br>
 
@@ -1917,28 +2074,6 @@ conf t
 
 
 ## ⚙️ 2. IP Phones (RJ45) - Cisco Skinny Client Control Protocol (SCCP)
-*What kind of phones do enterprise use?*
-
-### Requirements to make IP Phones Operational
-1. &nbsp;
-2. &nbsp;
-3. &nbsp;
-4. &nbsp;
-5. &nbsp;
-6. &nbsp;
-7. &nbsp;
-
-
-<br>
-
-> __FAQ (Knowledge Database)__   
-> Title: 2nd Job of a Call Manager - IP Phones   
-> Symptom: Lack of IP Phone DN Configurations  
-> Problem: No Configuration Files fo IP Phones  
-> Solution:
-
-<br>
-
 ~~~
 !@CUCM
 conf t
@@ -1954,8 +2089,13 @@ conf t
 
 <br>
 
+*Why 10.#$34T#.100.8? __TFTP__*
+
+<br>
+
 Ephone 1 MAC: #ephone1macadd#  
 Ephone 2 MAC: #ephone1macadd#  
+
 
 &nbsp;
 ---
@@ -2027,15 +2167,6 @@ conf t
 
 
 ## ⚙️ 3. Video Calls
-
-> __FAQ (Knowledge Database)__   
-> Title: 3rd Job of a Call Manager - Video Conference   
-> Symptom: Lack of Video  
-> Problem: Video does not activate during calls  
-> Solution:
-
-<br>
-
 ~~~
 !@CUCM
 conf t
@@ -2061,27 +2192,13 @@ end
 
 
 ## ⚙️ 4. Allow Incoming & Outgoing Calls
-
-> __FAQ (Knowledge Database)__   
-> Title: 4th Job of a Call Manager - Incoming & Outgoing Calls   
-> Symptom: Phone becomes busy when calling other branches  
-> Problem: No configurations for Incoming/Outgoing Calls  
-> Solution:
-
-<br>
-
 ~~~
 !@CUCM
 conf t
  voice service voip
  ip address trusted list
   ipv4 0.0.0.0 0.0.0.0
- end
-~~~
-
-~~~
-!@CUCM
-conf t
+ !
  dial-peer voice 11 Voip
   destination-pattern 11..
   session target ipv4:10.11.100.8
@@ -2167,18 +2284,6 @@ conf t
 
 
 ## ⚙️ 5. Interactive Voice Response System (IVRS)
-*How do large call centers handle numerous calls?*
-
-<br>
-
-> __FAQ (Knowledge Database)__   
-> Title: 5th Job of a Call Manager - IVRS   
-> Symptom: Not enough individuals responding to calls.    
-> Problem: Influx of incoming calls.  
-> Solution:  
-
-<br>
-
 ~~~
 !@CUCM
 config t
@@ -2252,7 +2357,7 @@ Review the jobs of a call manager:
  4. &nbsp;
  5. &nbsp;
 
-
+  
 <br>
 <br>
 
@@ -2261,13 +2366,13 @@ Review the jobs of a call manager:
 
 
 ### Requirements to make IP Phones Operational
-1. &nbsp;
-2. &nbsp;
-3. &nbsp;
-4. &nbsp;
-5. &nbsp;
-6. &nbsp;
-7. &nbsp;
+7. A____
+6. G71__  G72__
+5. R__
+4. TFTP:  SCCP:  SIP:
+3. IP Address
+2. MAC Address
+1. Power (PoE)
 
 <br>
 
@@ -2561,100 +2666,90 @@ copy run start
 
 
 ## 🌐 Site Connectivity
-*When to use UTP and Fibre Optic*
-
-<br>
-
-[IEEE Ethernet Standards](https://www.ccnaacademy.com/2018/09/ieee-ethernet-standards_16.html)
-
-  | Name            | Speed    | IEEE      |
-  | ---             |  ---     | ---       |
-  | Ethernet        |          |           |
-  | FastEthernet    |          |           |
-  | GigEthernet     |          |           |
-  | TenGigEthernet  |          |           |
-
-<br>
-
-  - RJ45 Jack
-  - SFP (Small Form-factor Pluggable)
-
-<br>
-
-  | Copper                                           | Single-mode fiber                    |
-  | ---                                              | ---                                  |
-  | Conductor, Bedding, Sheathing                    | Core, Cladding, Coating              |
-  | Affected by electrical and magnetic interference | Comprised of insulated glass strands |
-
-
-<br>
-<br>
-
----
-&nbsp;
-
-
-## 🔧 Configure EDGE
 ### 🏨 Establish connectivity to your enterprise.
 *How do you gain access to the internet?*
 
-<br>
+Fortigate Port = #P0RT#
 
-*How to know if you are connected to PLDT? __SCN - `show cdp neighbor`__*
-
-~~~
-!@EDGE
-show cdp neighbor
-~~~
-
-
-<br>
-<br>
-
+&nbsp;
 ---
 &nbsp;
 
 
-> __FAQ (Knowledge Database)__   
-> Title: Bootstrap Configurations for EDGE   
-> Symptom: Newly Procured  
-> Problem: No Configurations  
-> Solution:
-
-<br>
+~~~
+!@FW-EDGE
+config system global
+ set hostname FW-EDGE-#$34T#
+ end
+config system admin
+ edit admin
+  set accprofile super_admin
+  set vdom root
+  set password pass
+  next
+ edit rivan
+  set accprofile super_admin
+  set vdom root
+  set password pass
+  end
+show system admin
+~~~
 
 ~~~
-!@EDGE
-conf t
- hostname EDGE-#$34T#
- enable secret pass
- service password-encryption
- no logging cons
- no ip domain lookup
- line cons 0
-  password pass
-  login
-  exec-timeout 0 0
-  exit
- line vty 0 14
-  password pass
-  login
-  exec-timeout 0 0
- int gi 0/0/0
-  no shut
-  ip add 10.#$34T#.#$34T#.1 255.255.255.0
-  desc INSIDE
- int gi 0/0/1
-  no shut
-  ip add 200.0.0.#$34T# 255.255.255.0
-  desc OUTSIDE
- int loopback 0
-  ip add #$34T#.0.0.1 255.255.255.255
-  desc VIRTUALIP
+!@FW-EDGE
+config system virtual-switch
+ edit #P0RT#
+  config port
+   delete #P0RT#1
+   delete #P0RT#2
+   delete #P0RT#3
+   delete #P0RT#4
+   end
+  end
+config system interface
+ edit TAAS-LACP
+  set type aggregate
+  set member #P0RT#1 #P0RT#2
+  set status up
+  set lacp-mode active
+  set vdom root
+  set ip 10.#$34T#.#$34T#.1/30
+  set allowaccess ping https http ssh telnet
+  next
+ edit BABA-LACP
+  set type aggregate
+  set member #P0RT#3 #P0RT#4
+  set status up
+  set lacp-mode active
+  set vdom root
+  set ip 10.#$34T#.#$34T#.5/30
+  set allowaccess ping https http ssh telnet
+  next
+ edit wan1
+  set vdom root
+  set mode static
+  set type physical
+  set ip 200.0.0.#$34T# 255.255.255.0
+  set allowaccess ping https http ssh telnet
+  set status up
+  next
+ edit loopback0
+  set vdom root
+  set type loopback
+  set status up
+  set ip #$34T#.0.0.1 255.255.255.255
+  set allowaccess ping https http ssh telnet
   end
 ~~~
 
 
+Verification Commands
+~~~
+!@FW-EDGE
+diagnose netlink aggregate name TAAS-LACP
+diagnose netlink aggregate name BABA-LACP
+~~~
+
 <br>
 <br>
 
@@ -2662,61 +2757,84 @@ conf t
 &nbsp;
 
 
-> __FAQ (Knowledge Database)__   
-> Title: Jobs of an EDGE Router   
-> Symptom: Newly Procured  
-> Problem: No Configurations  
-> Solution:
-
 ~~~
 Jobs of an EDGE Router:
-1.  
-2.  
-3.  
-4.  
+1. 
+2. 
+3. 
+4. 
 5. 
-6. 
+
+Jobs of a Firewall:
+1. 
+2. 
+3. 
+4. 
+5. 
 ~~~
+
 
 <br>
 <br>
 
-### ⚙️ Configure routing protocols
+---
+&nbsp;
+
+
+### ⚙️ OSPF ROUTING
 ~~~
-!@EDGE
+!@FW-EDGE
+config router ospf
+ set router-id #$34T#.0.0.1
+ config area
+  edit 0.0.0.0
+  end
+ config network
+  edit 1
+   set prefix 10.#$34T#.#$34T#.0/30
+   set area 0.0.0.0
+   next
+  edit 2
+   set prefix 10.#$34T#.#$34T#.4/30
+   set area 0.0.0.0
+   next
+  edit 3
+   set prefix #$34T#.0.0.1/32
+   set area 0.0.0.0
+   next
+  edit 4
+   set prefix 200.0.0.0/24
+   set area 0.0.0.0
+   end
+ config ospf-interface
+  edit FW-TAAS
+   set interface TAAS-LACP
+   set status enable
+   set network-type point-to-point
+   next
+  edit FW-BABA
+   set interface BABA-LACP
+   set status enable
+   set network-type point-to-point
+   end
+  end
+get router info ospf neighbor
+get router info ospf status
+get router info routing-table all
+~~~
+
+<br>
+
+~~~
+!@CoreTAAS
 conf t
  ip routing
- ip route 10.11.0.0 255.255.0.0 200.0.0.11 254
- ip route 10.12.0.0 255.255.0.0 200.0.0.12 254
- ip route 10.21.0.0 255.255.0.0 200.0.0.21 254
- ip route 10.22.0.0 255.255.0.0 200.0.0.22 254
- ip route 10.31.0.0 255.255.0.0 200.0.0.31 254
- ip route 10.32.0.0 255.255.0.0 200.0.0.32 254
- ip route 10.41.0.0 255.255.0.0 200.0.0.41 254
- ip route 10.42.0.0 255.255.0.0 200.0.0.42 254
- ip route 10.51.0.0 255.255.0.0 200.0.0.51 254
- ip route 10.52.0.0 255.255.0.0 200.0.0.52 254
- ip route 10.61.0.0 255.255.0.0 200.0.0.61 254
- ip route 10.62.0.0 255.255.0.0 200.0.0.62 254
- ip route 10.71.0.0 255.255.0.0 200.0.0.71 254
- ip route 10.72.0.0 255.255.0.0 200.0.0.72 254
- ip route 10.81.0.0 255.255.0.0 200.0.0.81 254
- ip route 10.82.0.0 255.255.0.0 200.0.0.82 254
- ip route 10.91.0.0 255.255.0.0 200.0.0.81 254
- ip route 10.92.0.0 255.255.0.0 200.0.0.82 254
- ip route 10.#$34T#.0.0 255.255.0.0 10.#$34T#.#$34T#.4 253
- no ip route 10.#$34T#.0.0 255.255.0.0 200.0.0.#$34T# 254
- end
-~~~
-
-<br>
-
-~~~
-!@CUCM
-conf t
- ip routing
- ip route 0.0.0.0 0.0.0.0 10.#$34T#.100.4 254
- end
+ router ospf 1
+  router-id 10.#$34T#.#$34T#.2
+  network 10.#$34T#.0.0 0.0.255.255 area 0
+ int po1
+  ip ospf network point-to-point
+  end
 ~~~
 
 <br>
@@ -2724,69 +2842,24 @@ conf t
 ~~~
 !@CoreBABA
 conf t
- ip route 0.0.0.0 0.0.0.0 10.#$34T#.#$34T#.1 254
- end
+ ip routing
+ router ospf 1
+  router-id 10.#$34T#.#$34T#.4
+  network 10.#$34T#.0.0 0.0.255.255 area 0
+ int po1
+  ip ospf network point-to-point
+  end
 ~~~
-
-
-&nbsp;
----
-&nbsp;
-
-
-*How do you configure routes on windows?*
-
-~~~
-!@cmd
-route add 10.0.0.0 mask 255.0.0.0 10.#$34T#.1.4
-route add 200.0.0.0 mask 255.255.255.0 10.#$34T#.1.4
-~~~
-
 
 <br>
-<br>
-
----
-&nbsp;
-
-
-### ⚙️ 2. OSPF ROUTING
-*At what capacity do you want your devices to run?*
 
 ~~~
-!@edge
+!@CUCM
 conf t
-router ospf 1
-router-id #$34T#.0.0.1
-network 200.0.0.0 0.0.0.255 area 0
-network 10.#$34T#.#$34T#.0 0.0.0.255 area 0
-network #$34T#.0.0.1 0.0.0.0 area 0
-int gi 0/0/0
-ip ospf network point-to-point
-end
-~~~
-
-<br>
-
-~~~
-@coreBaba
-conf t
-router ospf 1
-router-id 10.#$34T#.#$34T#.4
-network 10.#$34T#.0.0 0.0.255.255 area 0
-int gi0/1
-ip ospf network point-to-point
-~~~
-
-<br>
-
-~~~
-@cucm
-conf t
-router ospf 1
-router-id 10.#$34T#.100.8
-network 10.#$34T#.100.0 0.0.0.255 area 0
-end
+ router ospf 1
+  router-id 10.#$34T#.100.8
+  network 10.#$34T#.100.0 0.0.0.255 area 0
+  end
 ~~~
 
 
@@ -2825,6 +2898,49 @@ ping 10.#$34T#.#$34T#.1            EDGE
 &nbsp;
 
 
+### 🧱 FIREWALL POLICY
+
+~~~
+!@FW-EDGE
+config system zone
+ edit LAN-ZONE
+  set intrazone allow
+  set interface TAAS-LACP BABA-LACP
+  end
+config firewall policy
+ edit 1
+  set name INSIDE-TO-OUTSIDE
+  set srcintf LAN-ZONE
+  set dstintf wan1
+  set srcaddr all
+  set dstaddr all
+  set action accept 
+  set schedule always
+  set service ALL
+  set nat enable
+  next
+ edit 2
+  set name OUTSIDE-TO-INSIDE
+  set srcintf wan1
+  set dstintf LAN-ZONE
+  set srcaddr all
+  set dstaddr all
+  set action accept 
+  set schedule always
+  set service ALL
+  set nat disable
+  end
+show firewall policy
+~~~
+
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
 ## 🧱 Setup a Firewall (CSR1000v)
 *`Ordinary Firewall` vs `NGFW` vs `WAF`*
 
@@ -2832,18 +2948,12 @@ ping 10.#$34T#.#$34T#.1            EDGE
 <br>
 
 ### `fbi.gov`   vs   `neu.edu.ph`   vs   `dpwh.gov.ph`
-- Threat Defense
-- Intrusion Detection
-- Intrusion Prevention System
-- Open Ports: HTTP, HTTPS, SSH, DNS
-
-<br>
-
 __Setup CSR1000v__
 
 ~~~
+!@FWVM-EDGE
 conf t
- hostname FW-EDGE
+ hostname FWVM-EDGE
  enable secret pass
  service password-encryption
  no logging cons
@@ -2870,3 +2980,4 @@ conf t
  end
 wr
 ~~~
+
