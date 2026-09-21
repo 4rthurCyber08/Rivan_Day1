@@ -794,13 +794,13 @@ conf t
 &nbsp;
 
 
-## 🔧 Configure CUCM
+## 🔧 Configure CME
 ### 📠 Setup a mini call center
 
 ~~~
-!@CUCM
+!@CME
 conf t
- hostname CUCM-#$34T#
+ hostname CME-#$34T#
  enable secret pass
  service password-encryption
  no logging console
@@ -813,7 +813,7 @@ conf t
   password pass
   login
   exec-timeout 0 0
- int fa 0/0
+ int g0/0/0
   no shut
   ip add 10.#$34T#.100.8 255.255.255.0
  end
@@ -848,7 +848,7 @@ Reuirements for IP Phones to work:
 
 ## ⚙️ 1. Analog Phones
 ~~~
-!@CUCM
+!@CME
 conf t
  dial-peer voice 1 pots
   destination-pattern #$34T#00
@@ -870,7 +870,7 @@ conf t
 Verify Functionality:
 
 ~~~
-!@CUCM
+!@CME
 show dial-peer voice summary
 csim start #$34T#00
 ~~~
@@ -885,7 +885,7 @@ csim start #$34T#00
 
 ## ⚙️ 2. IP Phones - Cisco Skinny Client Control Protocol (SCCP)
 ~~~
-!@CUCM
+!@CME
 conf t
  no telephony-service
  telephony-service
@@ -913,7 +913,7 @@ Ephone 2 MAC: #ephone1macadd#
 
 
 ~~~
-!@CUCM
+!@CME
 conf t
  ephone-dn 1
   number #$34T#11
@@ -952,7 +952,7 @@ conf t
 <br>
 
 ~~~
-!@CUCM
+!@CME
 conf t
  telephony-service
   create cnf-files
@@ -968,6 +968,168 @@ conf t
 > Depending on the ephone, __`create cnf-files`__ will need to be pasted twice.
 
 
+
+<br>
+<br>
+
+---
+&nbsp;
+
+
+## ⚙️ 2. IP Phones - Session Initiation Protocol (SIP)
+~~~
+!@CME
+conf t
+ no ip tftp source-interface gi0
+ ip tftp source-interface gi0/0/0
+ !
+ voice register global
+  mode cme
+  exit
+ voice service voip
+  allow-connections sip to sip
+  allow-connections h323 to sip
+  allow-connections sip to h323
+  supplementary-service h450.12
+  !
+  sip
+   silent-discard untrusted
+   header-passing
+   registrar server expires max 120 min 60
+   bind control source-interface Gi0/0/0
+   bind media source-interface Gi0/0/0
+   exit
+  exit
+ voice register global
+  source-address 10.#$34T#.100.8 port 5060
+  max-dn 40
+  max-pool 12
+  authenticate register
+  create profile sync syncinfo.xml
+  exit
+ voice register dn 1
+  number #$34T#110
+  name #$34T#1110
+  allow watch
+ voice register dn 2
+  number #$34T#220
+  name #$34T#220
+  allow watch
+ voice register dn 3
+  number #$34T#330
+  name #$34T#330
+  allow watch
+ voice register dn 4
+  number #$34T#440
+  name #$34T#440
+  allow watch
+ voice register dn 5
+  number #$34T#550
+  name #$34T#550
+  allow watch
+ voice register dn 6
+  number #$34T#660
+  name #$34T#660
+  allow watch
+ voice register dn 7
+  number #$34T#770
+  name #$34T#770
+  allow watch
+ voice register dn 8
+  number #$34T#880
+  name #$34T#880
+  allow watch
+ voice register dn 9
+  number #$34T#990
+  name #$34T#990
+  allow watch
+ voice register dn 10
+  number #$34T#670
+  name #$34T#670
+  allow watch
+ voice register dn 11
+  number #$34T#111
+  name #$34T#111
+  allow watch
+ voice register dn 12
+  number #$34T#221
+  name #$34T#221
+  allow watch
+ voice register dn 13
+  number #$34T#331
+  name #$34T#331
+  allow watch
+ voice register dn 14
+  number #$34T#441
+  name #$34T#441
+  allow watch
+ voice register dn 15
+  number #$34T#551
+  name #$34T#551
+  allow watch
+ voice register dn 16
+  number #$34T#661
+  name #$34T#661
+  allow watch
+ voice register dn 17
+  number #$34T#771
+  name #$34T#771
+  allow watch
+ voice register dn 18
+  number #$34T#881
+  name #$34T#881
+  allow watch
+ voice register dn 19
+  number #$34T#991
+  name #$34T#991
+  allow watch
+ voice register dn 20
+  number #$34T#671
+  name #$34T#671
+  allow watch
+  exit
+ !
+ voice register pool 1
+  id mac #sip1macadd#
+  number 1 dn 1
+  number 2 dn 2
+  number 3 dn 3
+  number 4 dn 4
+  number 5 dn 5
+  number 6 dn 6
+  number 7 dn 7
+  number 8 dn 8
+  number 9 dn 9
+  number 10 dn 10
+  dtmf-relay rtp-nte
+  codec g711ulaw
+  username #$34T#Passa password #$34T#Passa
+  type 8851
+ voice register pool 2
+  id mac #sip2macadd#
+  number 1 dn 11
+  number 2 dn 12
+  number 3 dn 13
+  number 4 dn 14
+  number 5 dn 15
+  number 6 dn 16
+  number 7 dn 17
+  number 8 dn 18
+  number 9 dn 19
+  number 10 dn 20
+  dtmf-relay rtp-nte
+  codec g711ulaw
+  username #$34T#Passb password #$34T#Passb
+  type 8851
+  exit
+ voice register global
+  create profile sync syncinfo.xml
+  restart
+  apply-config
+end
+~~~
+
+
 <br>
 <br>
 
@@ -977,7 +1139,7 @@ conf t
 
 ## ⚙️ 3. Video Calls
 ~~~
-!@CUCM
+!@CME
 conf t
  ephone 1
   video
@@ -1002,7 +1164,7 @@ end
 
 ## ⚙️ 4. Allow Incoming & Outgoing Calls
 ~~~
-!@CUCM
+!@CME
 conf t
  voice service voip
  ip address trusted list
@@ -1013,7 +1175,7 @@ conf t
 <br>
 
 ~~~
-!@CUCM
+!@CME
 conf t
  dial-peer voice 11 Voip
   destination-pattern 11..
@@ -1102,7 +1264,7 @@ conf t
 ## ⚙️ 5. Interactive Voice Response System (IVRS)
 
 ~~~
-!@CUCM
+!@CME
 config t
  dial-peer voice 69 voip
   service rivanaa out-bound
@@ -1151,7 +1313,7 @@ Configurations for IVRS cannot be overwritten. In case of wrong configurations, 
 <br>
 
 ~~~
-!@CUCM
+!@CME
 config t
  application
   no service callqueue flash:app-b-acd-2.1.2.2.tcl
@@ -1623,8 +1785,9 @@ conf t
 <br>
 
 ~~~
-!@CUCM
+!@CME
 conf t
+ ip routing
  router ospf 1
   router-id 10.#$34T#.100.8
   network 10.#$34T#.100.0 0.0.0.255 area 0
